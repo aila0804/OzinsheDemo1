@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		165AF1536AA7C414D461E707 /* Pods_OzinsheDemo1_OzinsheDemo1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5CE403B9FE68C4202C7823 /* Pods_OzinsheDemo1_OzinsheDemo1UITests.framework */; };
+		1F3BF3E2E5B1ABD91035237F /* Pods_OzinsheDemo1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 561E64CAB811B8052B9AA619 /* Pods_OzinsheDemo1Tests.framework */; };
+		70FB280FD32762494893572A /* Pods_OzinsheDemo1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A877742BE6576D22C2730BD9 /* Pods_OzinsheDemo1.framework */; };
+		FF3F78912E58C57300088A99 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FF3F78902E58C57300088A99 /* SnapKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		FF3F78042E57942E00088A99 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +31,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1BACB5AA7CBB49FB4136B4A8 /* Pods-OzinsheDemo1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OzinsheDemo1Tests.release.xcconfig"; path = "Target Support Files/Pods-OzinsheDemo1Tests/Pods-OzinsheDemo1Tests.release.xcconfig"; sourceTree = "<group>"; };
+		4BEAD37C03B025529D720735 /* Pods-OzinsheDemo1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OzinsheDemo1.debug.xcconfig"; path = "Target Support Files/Pods-OzinsheDemo1/Pods-OzinsheDemo1.debug.xcconfig"; sourceTree = "<group>"; };
+		561E64CAB811B8052B9AA619 /* Pods_OzinsheDemo1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OzinsheDemo1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61E17FD599F8677A34CEDE29 /* Pods-OzinsheDemo1-OzinsheDemo1UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OzinsheDemo1-OzinsheDemo1UITests.debug.xcconfig"; path = "Target Support Files/Pods-OzinsheDemo1-OzinsheDemo1UITests/Pods-OzinsheDemo1-OzinsheDemo1UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		675329855DA684D8C6769869 /* Pods-OzinsheDemo1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OzinsheDemo1Tests.debug.xcconfig"; path = "Target Support Files/Pods-OzinsheDemo1Tests/Pods-OzinsheDemo1Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		8ED43134ACFCC570EAAE4872 /* Pods-OzinsheDemo1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OzinsheDemo1.release.xcconfig"; path = "Target Support Files/Pods-OzinsheDemo1/Pods-OzinsheDemo1.release.xcconfig"; sourceTree = "<group>"; };
+		9A5CE403B9FE68C4202C7823 /* Pods_OzinsheDemo1_OzinsheDemo1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OzinsheDemo1_OzinsheDemo1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A877742BE6576D22C2730BD9 /* Pods_OzinsheDemo1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OzinsheDemo1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADB34019F8A59FE3EC9A921E /* Pods-OzinsheDemo1-OzinsheDemo1UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OzinsheDemo1-OzinsheDemo1UITests.release.xcconfig"; path = "Target Support Files/Pods-OzinsheDemo1-OzinsheDemo1UITests/Pods-OzinsheDemo1-OzinsheDemo1UITests.release.xcconfig"; sourceTree = "<group>"; };
 		FF3F77ED2E57942B00088A99 /* OzinsheDemo1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OzinsheDemo1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF3F78032E57942E00088A99 /* OzinsheDemo1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OzinsheDemo1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF3F780D2E57942E00088A99 /* OzinsheDemo1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OzinsheDemo1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70FB280FD32762494893572A /* Pods_OzinsheDemo1.framework in Frameworks */,
+				FF3F78912E58C57300088A99 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3BF3E2E5B1ABD91035237F /* Pods_OzinsheDemo1Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,12 +98,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				165AF1536AA7C414D461E707 /* Pods_OzinsheDemo1_OzinsheDemo1UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B9A280A98BAA729114293BB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4BEAD37C03B025529D720735 /* Pods-OzinsheDemo1.debug.xcconfig */,
+				8ED43134ACFCC570EAAE4872 /* Pods-OzinsheDemo1.release.xcconfig */,
+				61E17FD599F8677A34CEDE29 /* Pods-OzinsheDemo1-OzinsheDemo1UITests.debug.xcconfig */,
+				ADB34019F8A59FE3EC9A921E /* Pods-OzinsheDemo1-OzinsheDemo1UITests.release.xcconfig */,
+				675329855DA684D8C6769869 /* Pods-OzinsheDemo1Tests.debug.xcconfig */,
+				1BACB5AA7CBB49FB4136B4A8 /* Pods-OzinsheDemo1Tests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EF2F8B1540B2B21493B9CA53 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A877742BE6576D22C2730BD9 /* Pods_OzinsheDemo1.framework */,
+				9A5CE403B9FE68C4202C7823 /* Pods_OzinsheDemo1_OzinsheDemo1UITests.framework */,
+				561E64CAB811B8052B9AA619 /* Pods_OzinsheDemo1Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FF3F77E42E57942B00088A99 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +135,8 @@
 				FF3F78062E57942E00088A99 /* OzinsheDemo1Tests */,
 				FF3F78102E57942E00088A99 /* OzinsheDemo1UITests */,
 				FF3F77EE2E57942B00088A99 /* Products */,
+				4B9A280A98BAA729114293BB /* Pods */,
+				EF2F8B1540B2B21493B9CA53 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,9 +157,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF3F78162E57942E00088A99 /* Build configuration list for PBXNativeTarget "OzinsheDemo1" */;
 			buildPhases = (
+				246EF75F30FA62431174C09C /* [CP] Check Pods Manifest.lock */,
 				FF3F77E92E57942B00088A99 /* Sources */,
 				FF3F77EA2E57942B00088A99 /* Frameworks */,
 				FF3F77EB2E57942B00088A99 /* Resources */,
+				5BB9E85DC211A1EA6C90614C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,8 +171,6 @@
 				FF3F77EF2E57942B00088A99 /* OzinsheDemo1 */,
 			);
 			name = OzinsheDemo1;
-			packageProductDependencies = (
-			);
 			productName = OzinsheDemo1;
 			productReference = FF3F77ED2E57942B00088A99 /* OzinsheDemo1.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +179,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF3F781B2E57942E00088A99 /* Build configuration list for PBXNativeTarget "OzinsheDemo1Tests" */;
 			buildPhases = (
+				E351A195A81674B160D2C3AE /* [CP] Check Pods Manifest.lock */,
 				FF3F77FF2E57942E00088A99 /* Sources */,
 				FF3F78002E57942E00088A99 /* Frameworks */,
 				FF3F78012E57942E00088A99 /* Resources */,
@@ -147,8 +193,6 @@
 				FF3F78062E57942E00088A99 /* OzinsheDemo1Tests */,
 			);
 			name = OzinsheDemo1Tests;
-			packageProductDependencies = (
-			);
 			productName = OzinsheDemo1Tests;
 			productReference = FF3F78032E57942E00088A99 /* OzinsheDemo1Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,9 +201,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF3F781E2E57942E00088A99 /* Build configuration list for PBXNativeTarget "OzinsheDemo1UITests" */;
 			buildPhases = (
+				3066B77B8C105B43C0C19C7F /* [CP] Check Pods Manifest.lock */,
 				FF3F78092E57942E00088A99 /* Sources */,
 				FF3F780A2E57942E00088A99 /* Frameworks */,
 				FF3F780B2E57942E00088A99 /* Resources */,
+				B52071432AB195ADA0C94B1F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,8 +216,6 @@
 				FF3F78102E57942E00088A99 /* OzinsheDemo1UITests */,
 			);
 			name = OzinsheDemo1UITests;
-			packageProductDependencies = (
-			);
 			productName = OzinsheDemo1UITests;
 			productReference = FF3F780D2E57942E00088A99 /* OzinsheDemo1UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -208,6 +252,9 @@
 			);
 			mainGroup = FF3F77E42E57942B00088A99;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FF3F788F2E58C57300088A99 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FF3F77EE2E57942B00088A99 /* Products */;
 			projectDirPath = "";
@@ -243,6 +290,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		246EF75F30FA62431174C09C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OzinsheDemo1-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3066B77B8C105B43C0C19C7F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OzinsheDemo1-OzinsheDemo1UITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5BB9E85DC211A1EA6C90614C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OzinsheDemo1/Pods-OzinsheDemo1-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OzinsheDemo1/Pods-OzinsheDemo1-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OzinsheDemo1/Pods-OzinsheDemo1-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B52071432AB195ADA0C94B1F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OzinsheDemo1-OzinsheDemo1UITests/Pods-OzinsheDemo1-OzinsheDemo1UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OzinsheDemo1-OzinsheDemo1UITests/Pods-OzinsheDemo1-OzinsheDemo1UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OzinsheDemo1-OzinsheDemo1UITests/Pods-OzinsheDemo1-OzinsheDemo1UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E351A195A81674B160D2C3AE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OzinsheDemo1Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FF3F77E92E57942B00088A99 /* Sources */ = {
@@ -284,6 +434,7 @@
 /* Begin XCBuildConfiguration section */
 		FF3F78172E57942E00088A99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BEAD37C03B025529D720735 /* Pods-OzinsheDemo1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -293,7 +444,6 @@
 				INFOPLIST_FILE = OzinsheDemo1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -311,6 +461,7 @@
 		};
 		FF3F78182E57942E00088A99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8ED43134ACFCC570EAAE4872 /* Pods-OzinsheDemo1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -320,7 +471,6 @@
 				INFOPLIST_FILE = OzinsheDemo1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -457,6 +607,7 @@
 		};
 		FF3F781C2E57942E00088A99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 675329855DA684D8C6769869 /* Pods-OzinsheDemo1Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -475,6 +626,7 @@
 		};
 		FF3F781D2E57942E00088A99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BACB5AA7CBB49FB4136B4A8 /* Pods-OzinsheDemo1Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -493,6 +645,7 @@
 		};
 		FF3F781F2E57942E00088A99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61E17FD599F8677A34CEDE29 /* Pods-OzinsheDemo1-OzinsheDemo1UITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -509,6 +662,7 @@
 		};
 		FF3F78202E57942E00088A99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADB34019F8A59FE3EC9A921E /* Pods-OzinsheDemo1-OzinsheDemo1UITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -563,6 +717,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FF3F788F2E58C57300088A99 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FF3F78902E58C57300088A99 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF3F788F2E58C57300088A99 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FF3F77E52E57942B00088A99 /* Project object */;
 }
