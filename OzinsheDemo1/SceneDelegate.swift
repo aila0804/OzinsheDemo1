@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = ViewController()// основной контроллер к-й будет запускаться первым
+        window?.rootViewController = TabBarController()// основной контроллер к-й будет запускаться первым
         window?.makeKeyAndVisible() // теперь основной уиндоу должен появиться
     }
 
