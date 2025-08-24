@@ -10,6 +10,8 @@ target 'OzinsheDemo1' do
   pod 'SwiftyJSON'
   pod 'SVProgressHUD'
   pod 'SDWebImage'
+  
+  pod 'SnapKit'
 
   target 'OzinsheDemo1Tests' do
     inherit! :search_paths
