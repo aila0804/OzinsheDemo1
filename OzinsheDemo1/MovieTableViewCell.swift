@@ -29,8 +29,25 @@ class MovieTableViewCell: UITableViewCell {
         
         label.text = "Қызғалдақтар мекені"
         
+        label.font = UIFont(name: "SF-Pro-Display-Bold", size: 14)
+        
+        label.textColor = UIColor(named: "#111827")
+        
         return label
-    }
+    }()
+    
+    lazy var subtitleLabel = {
+        
+        let label = UILabel()
+        
+        label.text = "2020 • Телехикая • Мультфильм"
+        
+        label.font = UIFont(name: "SF-Pro-Display-Regular", size: 12)
+        
+        label.textColor = UIColor(named: "#9CA3AF")
+
+        return label
+    }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
