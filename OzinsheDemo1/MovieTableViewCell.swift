@@ -49,15 +49,80 @@ class MovieTableViewCell: UITableViewCell {
         return label
     }()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    lazy var playView = {
+        
+        let view = UIView()
+        
+        let imageView = UIImageView(image: UIImage(named: "Play-Filled"))
+        
+        let label = UILabel()
+        
+        view.backgroundColor = UIColor(named: "#F8EEFF")
+        view.layer.cornerRadius = 8
+        
+        label.text = "Қарау"
+        label.font = UIFont(name: "SF-Pro-Display-Bold", size: 12)
+        label.textColor = UIColor(named: "#9753F0")
+        
+        view.addSubview(imageView)
+        view.addSubview(label)
+        
+        imageView.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(12)
+            make.verticalEdges.equalToSuperview().inset(5)
+            make.size.equalTo(16)
+        }
+        
+        label.snp.makeConstraints { make in
+            make.centerY.equalTo(imageView)
+            make.left.equalTo(imageView.snp.right).offset(4)
+            make.right.equalToSuperview().inset(12)
+        }
+
+        return view
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        setupUI()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    func setupUI() {
+        contentView.addSubview(posterImageView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(subtitleLabel)
+        contentView.addSubview(playView)
+        
+        posterImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(24)
+            make.left.equalToSuperview().inset(24)
+            make.height.equalTo(104)
+            make.width.equalTo(71)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(24)
+            make.left.equalTo(posterImageView.snp.right).offset(17)
+            make.right.equalToSuperview().inset(24)
 
-        // Configure the view for the selected state
+        }
+        
+        subtitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.left.equalTo(posterImageView.snp.right).offset(17)
+            make.right.equalToSuperview().inset(24)
+        }
+        
+        playView.snp.makeConstraints { make in
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(8)
+            make.left.equalTo(posterImageView.snp.right).offset(17)
+        }
+        
     }
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
