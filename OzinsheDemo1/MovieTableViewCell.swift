@@ -82,6 +82,14 @@ class MovieTableViewCell: UITableViewCell {
         return view
     }()
     
+    lazy var bottomView = {
+        let view = UIView()
+        
+        view.backgroundColor = UIColor(named: "#D1D5DB")
+        
+        return view
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -93,6 +101,7 @@ class MovieTableViewCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(subtitleLabel)
         contentView.addSubview(playView)
+        contentView.addSubview(bottomView)
         
         posterImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(24)
@@ -115,10 +124,17 @@ class MovieTableViewCell: UITableViewCell {
         }
         
         playView.snp.makeConstraints { make in
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(8)
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(24)
             make.left.equalTo(posterImageView.snp.right).offset(17)
         }
         
+        bottomView.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().inset(0)
+
+        }
     }
     
     required init?(coder: NSCoder) {
