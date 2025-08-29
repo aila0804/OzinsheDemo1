@@ -6,9 +6,21 @@
 //
 
 import UIKit
+import SnapKit
+import SVProgressHUD
+import Alamofire
+import SwiftyJSON
 
 class HomeViewController: UIViewController {
-
+    
+    lazy var labelName = {
+        let label = "Name"
+        
+        return label
+    }()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

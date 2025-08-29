@@ -6,9 +6,19 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileViewController: UIViewController {
-
+    
+    lazy var profileImageView = {
+        let profImageView = UIImageView()
+        
+        profImageView.image = UIImage(named: "")
+        
+        return profImageView
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
