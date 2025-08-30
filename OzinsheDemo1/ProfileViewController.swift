@@ -13,11 +13,20 @@ class ProfileViewController: UIViewController {
     lazy var profileImageView = {
         let profImageView = UIImageView()
         
-        profImageView.image = UIImage(named: "")
+        profImageView.image = UIImage(named: "avatar")
         
         return profImageView
     }()
     
+    lazy var profileLabel = {
+        let label = UILabel()
+        
+        label.text = "un_known@mail.com"
+        label.font = UIFont(name: "SF-Pro-Display-Bold", size: 14)
+        label.textColor = UIColor(named: "#111827")
+    }
+    
+    //un_known@mail.com
     
     override func viewDidLoad() {
         super.viewDidLoad()
