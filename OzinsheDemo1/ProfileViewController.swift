@@ -21,28 +21,44 @@ class ProfileViewController: UIViewController {
     lazy var profileLabel = {
         let label = UILabel()
         
-        label.text = "un_known@mail.com"
-        label.font = UIFont(name: "SF-Pro-Display-Bold", size: 14)
+        label.text = "My Profile"
+        label.font = UIFont(name: "SF-Pro-Display-Bold", size: 24)
         label.textColor = UIColor(named: "#111827")
     }
     
-    //un_known@mail.com
+    lazy var subtitleProfileLabel = {
+        let label = UILabel()
+        
+        label.text = "un_known@mail.com"
+        label.font = UIFont(name: "SF-Pro-Display-Regular", size: 14)
+        label.textColor = UIColor(named: "#9CA3AF")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+
+        setupUI()
     }
     
+    func setupUI() {
+        
+        view.addSubview(profileImageView)
+        
+        profileImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(132)
+            make.left.equalToSuperview().inset(128)
+            make.height.equalTo(120)
+            make.width.equalTo(120)
+        }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+//
+//        profileLabel.snp.makeConstraints { make in
+//            make.top.equalTo(profileImageView.snp.bottom).offset(8)
+//            make.left.equalTo(profileImageView.snp.right).offset(17)
+//            make.right.equalToSuperview().inset(24)
+//        }
     }
-    */
-
+    
 }
