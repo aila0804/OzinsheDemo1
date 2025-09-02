@@ -38,6 +38,37 @@ class ProfileViewController: UIViewController {
         return label
     }()
     
+    // buttons
+    
+    let backView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "#F9FAFB")
+        
+        return view
+    }()
+    
+    lazy var languageButton = {
+        let button = UIButton()
+        
+        button.setTitle("Language", for: .normal)
+        button.setTitleColor(UIColor(named: "#111827"), for: .normal)
+        button.titleLabel?.font = UIFont(name: "SF-Pro-Display-Semibold", size: 16)
+        button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(languageButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    lazy var languageLabel = {
+        let label = UILabel()
+        
+        label.text = "English"
+        label.textColor = UIColor(named: "#111827")
+        label.font = UIFont(name: "SF-Pro-Display-Semibold", size: 12)
+        
+        return label
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +103,8 @@ class ProfileViewController: UIViewController {
             make.right.equalToSuperview().inset(24)
         }
     }
+    
+    
     
     
     
