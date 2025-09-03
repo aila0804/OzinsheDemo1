@@ -59,6 +59,7 @@ class ProfileViewController: UIViewController {
         return button
     }()
     
+    
     lazy var languageLabel = {
         let label = UILabel()
         
@@ -69,11 +70,40 @@ class ProfileViewController: UIViewController {
         return label
     }()
     
+    lazy var languageArrowImage = {
+        let arrowImage = UIImageView()
+        
+        arrowImage.image = UIImage(named: "Chevron-Right-Outline")
+        
+        return arrowImage
+    }()
+    
+    lazy var languageCellView = {
+        let cell = UIView()
+        
+        cell.backgroundColor = UIColor(named: "#D1D5DB")
+        
+        return cell
+    }()
+    
+    // BUTTON ELEMENTS
+    lazy var UserInfoButton = {
+        let button = UIButton()
+        button.setTitle("Personal Information", for: .normal)
+        button.setTitleColor(UIColor(named: "#111827"), for: .normal)
+        button.titleLabel?.font = UIFont(name: "SF-Pro-Display-Semibold", size: 16)
+        button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(userInfoButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+                
         setupUI()
     }
     
