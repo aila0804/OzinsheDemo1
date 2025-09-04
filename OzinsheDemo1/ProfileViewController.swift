@@ -98,7 +98,31 @@ class ProfileViewController: UIViewController {
         return button
     }()
     
+    let userInfoLabel = {
+        let label = UILabel()
+        
+        label.text = "Edit"
+        label.textColor = UIColor(named: "#9CA3AF")
+        label.font = UIFont(name: "SF-Pro-Display-Semibold", size: 12)
+        
+        return label
+    }()
     
+    let userInfoArrowImage = {
+        let arrowImage = UIImageView()
+        
+        arrowImage.image = UIImage(named: "Chevron-Right-Outline")
+        
+        return arrowImage
+    }()
+    
+    let userInfoCellView = {
+        let cell = UIView()
+        
+        cell.backgroundColor = UIColor(named: "#D1D5DB")
+        
+        return cell
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
