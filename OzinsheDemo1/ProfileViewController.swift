@@ -124,6 +124,36 @@ class ProfileViewController: UIViewController {
         return cell
     }()
     
+    //change password buttons
+    
+    lazy var passwordEditButton = {
+        let button = UIButton()
+        
+        button.setTitle("Change Password", for: .normal)
+        button.setTitleColor(UIColor(named: "#111827"), for: .normal)
+        button.titleLabel?.font = UIFont(name: "SF-Pro-Display-Semibold", size: 16)
+        button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(changePasswordTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    let passwordArrowImage = {
+        let arrowImage = UIImageView()
+        
+        arrowImage.image = UIImage(named: "Chevron-Right-Outline")
+        
+        return arrowImage
+    }()
+    
+    let passwordCellView = {
+        let cell = UIView()
+        
+        cell.backgroundColor = UIColor(named: "#D1D5DB")
+        
+        return cell
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
