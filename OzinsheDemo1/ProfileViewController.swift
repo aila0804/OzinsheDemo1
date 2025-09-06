@@ -154,11 +154,61 @@ class ProfileViewController: UIViewController {
         return cell
     }()
     
+    // Dark mode elements
+    
+    let darkModeLabel = {
+        let label = UILabel()
+        
+        label.text = "Dark Mode"
+        label.textColor = UIColor(named: "#111827")
+        label.font = UIFont(name: "SF-Pro-Display-Semibold", size: 16)
+        
+        return label
+    }()
+    
+    lazy var darkModeSwitch = {
+        let dMSwitch = UISwitch()
+        
+        dMSwitch.onTintColor = UIColor(named: <#T##String#>)
+        dMSwitch.thumbTintColor = UIColor(named: <#T##String#>)
+        dMSwitch.addTarget(self, action: #selector(changeSwitch), for: .touchUpInside)
+        
+        return dMSwitch
+    }()
+    
+    // VC Lifecycle
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setupUI()
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-                
-        setupUI()
+        view.backgroundColor = UIColor(named: "#FFFFFF")
+        
+        navigationItem.title = "Profile"
+    }
+    
+    // add functions
+    
+    func localizeLanguage() {
+        
+    }
+    
+    func languageDidChange() {
+        
+    }
+    
+    @objc func languageButtonTapped() {
+        let languageVC = LanguageViewController()
+        
+        languageVC.modalPresentationStyle = .overFullScreen
+        
+        languageVC.delegate = self
+        
+        present(languageVC, animated: true, completion: nil)
     }
     
     func setupUI() {
