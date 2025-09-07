@@ -211,6 +211,47 @@ class ProfileViewController: UIViewController {
         present(languageVC, animated: true, completion: nil)
     }
     
+    @objc func logOutTapButton() {
+        let logOutVC = LogOutViewController()
+        
+        logOutVC.modalPresentationStyle = .overFullScreen
+        
+        self.present(logOutVC, animated: true, completion: nil)
+    }
+    
+    @objc func userInfoButtonTapped() {
+        let userInfoVC = UserInfoViewController()
+        
+        userInfoVC.modalPresentationStyle = .fullScreen
+        
+        navigationController?.show(userInfoVC, sender: self)
+        navigationItem.title = ""
+    }
+    
+    @objc func changePasswordTapped() {
+        let changePassword = ChangePasswordViewController()
+        
+        navigationController?.show(changePassword, sender: self)
+        navigationItem.title = ""
+    }
+    
+    @objc func changeSwitch(_ dmswitch: UISwitch) {
+        if dmswitch.isOn {
+            if let windowScene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene}).first(where: { $0.activationState == .foregroundActive }) {
+                windowScene.windows.forEach { window in
+                    window.overrideUserInterfaceStyle = .dark
+                }
+            }
+        } else {
+            if let windowScene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).first(where: { $0.activationState == .foregroundActive }) {
+                windowScene.windows.forEach { window in
+                    window.overrideUserInterfaceStyle = .light
+                }
+            }
+        }
+    }
+            
+            
     func setupUI() {
         
         view.addSubview(profileImageView)
