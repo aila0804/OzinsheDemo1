@@ -87,7 +87,7 @@ class ProfileViewController: UIViewController {
     }()
     
     // BUTTON ELEMENTS
-    lazy var UserInfoButton = {
+    lazy var userInfoButton = {
         let button = UIButton()
         button.setTitle("Personal Information", for: .normal)
         button.setTitleColor(UIColor(named: "#111827"), for: .normal)
@@ -250,37 +250,117 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-            
+            // addSubViews & Constraints
             
     func setupUI() {
         
-        view.addSubview(profileImageView)
-        view.addSubview(profileLabel)
+        view.addSubviews(profileLabel, profileLabel, subtitleProfileLabel, backView)
         
+        backView.addSubviews(languageLabel, languageButton, languageArrowImage, languageCellView, userInfoLabel, UserInfoButton, userInfoArrowImage, userInfoCellView, passwordEditButton, passwordArrowImage, passwordCellView, darkModeLabel, darkModeSwitch)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logOutButton"), style: .done, target: self, action: #selector(logOutTapButton))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 1, green: 0.25, blue: 0.17, alpha: 1)
         
         profileImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(132)
-            make.left.equalToSuperview().inset(128)
-            make.height.equalTo(120)
-            make.width.equalTo(120)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(32)
+            make.centerX.equalToSuperview()
         }
         
         
         profileLabel.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.bottom).offset(8)
-            make.left.equalTo(profileImageView.snp.right).offset(17)
-            make.right.equalToSuperview().inset(24)
+            make.top.equalTo(profileImageView.snp.bottom).offset(24)
+            make.centerX.equalToSuperview()
         }
         
         subtitleProfileLabel.snp.makeConstraints { make in
             make.top.equalTo(profileLabel.snp.bottom).offset(8)
-            make.left.equalTo(profileImageView.snp.right).offset(17)
+            make.centerX.equalToSuperview()
+        }
+        
+        backView.snp.makeConstraints { make in
+            make.top.equalTo(subtitleProfileLabel.snp.bottom).offset(24)
+            make.top.bottom.left.right.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        languageButton.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalTo(languageCellView.snp.top).offset(1)
+            make.left.right.equalToSuperview().inset(24)
+            make.height.equalTo(64)
+        }
+        
+        languageArrowImage.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(16)
+            make.width.equalTo(16)
+            make.left.equalTo(languageLabel.snp.right).offset(8)
+            make.centerY.equalTo(languageButton)
+        }
+        
+        languageLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(languageButton)
+        }
+        
+        languageCellView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+        }
+        
+        userInfoButton.snp.makeConstraints { make in
+            make.top.equalTo(languageCellView.snp.bottom).inset(1)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(64)
+        }
+        
+        userInfoArrowImage.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(16)
+            make.width.equalTo (16)
+            make.left.equalTo(userInfoLabel.snp.right).offset(8)
+            make.centerY.equalTo(userInfoButton)
+        }
+        
+        userInfoLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(userInfoButton)
+        }
+        
+        userInfoCellView.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(24)
+            make.left.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+            make.top.equalTo(userInfoButton.snp.bottom).inset(1)
+        }
+        
+        passwordEditButton.snp.makeConstraints { make in
+            make.top.equalTo(userInfoCellView.snp.bottom).offset(1)
+            make.left.right.equalToSuperview().inset(24)
+            make.height.equalTo(64)
+        }
+        
+        passwordArrowImage.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(16)
+            make.width.equalTo(16)
+            make.centerY.equalTo(passwordEditButton)
+        }
+        
+        passwordCellView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+            make.top.equalTo(passwordEditButton.snp.bottom).inset(1)
+        }
+        
+        darkModeLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordCellView.snp.bottom).offset(25)
+            make.left.equalToSuperview().inset(24)
+            make.centerX.equalTo(darkModeSwitch)
+        }
+
+        darkModeSwitch.snp.makeConstraints { make in
+            make.top.equalTo(passwordCellView.snp.bottom).offset(20)
             make.right.equalToSuperview().inset(24)
         }
     }
-    
-    
-    
-    
     
 }
