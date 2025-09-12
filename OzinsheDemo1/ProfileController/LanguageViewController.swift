@@ -40,8 +40,7 @@ class LanguageViewController: UIViewController, UIGestureRecognizerDelegate {
         languageLabel.font = UIFont(name: "SF-Pro-Display-Bold", size: 24)
         languageLabel.textColor = UIColor(named: "#111827")
         
-        view.addSubview(homeView)
-        view.addSubview(languageLabel)
+        view.addSubviews(homeView, languageLabel)
         
         homeView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(21)
@@ -54,11 +53,21 @@ class LanguageViewController: UIViewController, UIGestureRecognizerDelegate {
             make.left.equalToSuperview().inset(24)
         }
         
-        
         return view
     }()
     
-    
+    let langTableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = true
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+        
+        // Регистрация TableViewCell
+        tableView.register(LanguageTableViewCell.self, forCellReuseIdentifier: "LanguageCell")
+        
+        return tableView
+    }()
     
 }
 
