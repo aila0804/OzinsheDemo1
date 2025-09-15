@@ -116,19 +116,58 @@ class LogOutViewController: UIViewController, UIGestureRecognizerDelegate {
             make.height.equalTo(56)
         }
     }
-        
+    
     func localizeLanguage () {
-    logOutLabel.text = "LOG_OUT_LABEL".localized()
-    questionLabel.text = "LOG_OUT_QUES_LABEL".localized()
+        logOutLabel.text = "LOG_OUT_LABEL".localized()
+        questionLabel.text = "LOG_OUT_QUES_LABEL".localized()
         agreeButton. setTitle("LOG_OUT_BUTTON".localized(), for: .normal)
         disagreeButton.setTitle("NO_LOG_OUT_BUTTON".localized(), for: .normal)
     }
-
+    
     func tapGest() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector (dismissView))
         tap.delegate = self
         view.addGestureRecognizer(tap)
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector (handleDismiss)))
     }
+    
+    @objc func dismissView() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func handleDismiss(sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .changed:
+            viewTranslation = sender.translation(in: view)
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.backView.transform = CGAffineTransform(translationX: 0, y: self.viewTranslation.y)
+            })
+            
+        case .ended:
+            if viewTranslation.y < 100 {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                    self.backView.transform = .identity
+                })
+            } else {
+                dismiss(animated: true, completion: nil)
+            }
+        default:
+            break
+        }
+        
+    }
+    
+    @objc func logoutButtonTapped() {
+        UserDefaults.standard.removeObject(forKey: "accessToken")
+        DispatchQueue.main.async {
+            let rootVC = UINavigationController(rootViewController: SignInViewController())
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = rootVC
+            appDelegate.window?.makeKeyAndVisible ()
+        }
+        
+    }
+    
     
 }
