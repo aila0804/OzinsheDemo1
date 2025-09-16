@@ -158,7 +158,7 @@ class LogOutViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @objc func logoutButtonTapped() {
-        UserDefaults.standard.removeObject(forKey: "accessToken")
+//        UserDefaults.standard.removeObject(forKey: "accessToken")
         DispatchQueue.main.async {
             let rootVC = UINavigationController(rootViewController: SignInViewController())
             
@@ -169,5 +169,15 @@ class LogOutViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if (touch.view?.isDescendant (of: backView))! {
+    return false
+    }
+    return true
+    }
+    
+    @objc func cancelButtonTapped() {
+    dismissView()
+    }
     
 }
