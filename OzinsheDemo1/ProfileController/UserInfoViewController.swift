@@ -33,5 +33,62 @@ class UserInfoViewController: UIViewController {
         
         return textField
     }()
+    
+    let grayView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 0.82, green: 0.835, blue: 0.859, alpha: 1)
         
+        return view
+    }()
+    
+    let emailLabel = {
+        let label = UILabel ()
+        label.text = "Email"
+        label.textColor = UIColor(red: 0.612, green: 0.639, blue: 0.686, alpha: 1)
+        label.font = UIFont (name: "SF-Pro-Display-Bold", size: 14)
+        
+        return label
+    }()
+    
+    let emailTextField = {
+        let textField = UITextField()
+        textField.placeholder = "ali@gmail.com"
+        textField.textColor = UIColor(named: "111827")
+        textField.font = UIFont (name: "SF-Pro-Display-Semibold", size: 16)
+        
+        return textField
+    }()
+    
+    let grayView2 = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 0.82, green: 0.835, blue: 0.859, alpha: 1)
+        
+        return view
+    }()
+    
+    let phoneLabel = {
+        let label = UILabel()
+        label.text = "Телефон"
+        label.textColor = UIColor(red: 0.612, green: 0.639, blue: 0.686, alpha: 1)
+        label.font = UIFont(name: "SF-Pro-Display-Bold", size: 14)
+        
+        return label
+    }()
+    
+    let phoneTextField = {
+        let textField = UITextField()
+        textField.placeholder = "+7 702 732-10-31"
+        textField.textColor = UIColor(named: "111827")
+        textField.font = UIFont (name: "SF-Pro-Display-Semibold", size: 16)
+        return textField
+    }()
+    
+    let grayView3 = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 0.82, green: 0.835, blue: 0.859, alpha: 1)
+        
+        return view
+    }()
+    
+    
 }
