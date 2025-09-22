@@ -132,11 +132,74 @@ class UserInfoViewController: UIViewController {
     // cycle
     
     override func viewDidLoad() {
-    super.viewDidLoad()
-//    setupUI()
-//    downloadPersonalInfo()
-//    localizeLanguage()
+        super.viewDidLoad()
+        //    setupUI()
+        //    downloadPersonalInfo()
+        //    localizeLanguage()
         
+    }
+    
+    // functions
+    
+    func localizeLanguage() {
+        navigationItem.title = "USER_INFO_NAVIGATION".localized()
+        yourNameLabel.text = "USER_INFO_NAME_LABEL".localized()
+        nameTextField.placeholder = "USER_INFO_NAME_TEXT_FIELD".localized()
+        phoneLabel.text = "US_INFO_PHONE_LABEL".localized ()
+        birthLabel.text = "US_INFO_BIRTH_LABEL".localized()
+        saveChangesButton.setTitle("US_INFO_SAVE_BUTTON".localized(), for: .normal)
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer (target: self, action: #selector(self.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing (true)
+    }
+    
+    func downloadPersonalInfo() {
+        SVProgressHUD.show()
+        
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(Storage.sharedInstance.accessToken)"]
+        
+        AF.request(Urls.UPLOAD_USER_INFO, method: .get, headers: headers).responseData { response in
+            
+            SVProgressHUD.dismiss()
+            
+            var resultString = ""
+            
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+                print (resultString)
+            }
+            
+            if response.response?.statusCode == 200 {
+                let json = JSON(response.data!)
+                let name = json ["name"]
+                let email = json ["user" ]["email"]
+                let phoneNumber = json ["phoneNumber"]
+                let birthDate = json["birthDate"]
+                self.userID = json ["id"].int
+                self.nameTextField.text = name.stringValue
+                self.emailTextField.text = email.stringValue
+                self.phoneTextField.text = phoneNumber.stringValue
+                self.birthTextField.text = birthDate.stringValue
+            } else {
+                SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+            }
+        }
+    }
+    
+    @objc func saveInfoButton() {
+    let updatedName = nameTextField.text ?? ""
+    let updatedEmail = emailLabel.text ?? ""
+    let updatedBirth = birthTextField.text ?? ""
+    let updatedPhone = phoneTextField.text ?? ""
+    
+//    updateUserInfo(updatedName: updatedName, updatedEmail: updatedEmail, updatedBirth: updatedBirth, updatedPhone: updatedPhone)
     }
     
 }
