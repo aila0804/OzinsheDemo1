@@ -194,12 +194,43 @@ class UserInfoViewController: UIViewController {
     }
     
     @objc func saveInfoButton() {
-    let updatedName = nameTextField.text ?? ""
-    let updatedEmail = emailLabel.text ?? ""
-    let updatedBirth = birthTextField.text ?? ""
-    let updatedPhone = phoneTextField.text ?? ""
-    
-//    updateUserInfo(updatedName: updatedName, updatedEmail: updatedEmail, updatedBirth: updatedBirth, updatedPhone: updatedPhone)
+        let updatedName = nameTextField.text ?? ""
+        let updatedEmail = emailLabel.text ?? ""
+        let updatedBirth = birthTextField.text ?? ""
+        let updatedPhone = phoneTextField.text ?? ""
+        
+        //    updateUserInfo(updatedName: updatedName, updatedEmail: updatedEmail, updatedBirth: updatedBirth, updatedPhone: updatedPhone)
     }
+    
+    func updateUserInfo(updatedName: String, updatedEmail: String, updatedBirth: String, updatedPhone: String) {
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(Storage.sharedInstance.accessToken)"]
+        let parameters: [String: Any] = [
+            "name": updatedName,
+            "email": updatedEmail,
+            "phoneNumber": updatedPhone,
+            "birthDate": updatedBirth,
+        ]
+        
+        AF.request(Urls.UPLOAD_USER_INFO, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .responseData { response in
+                SVProgressHUD.dismiss()
+                var resultString = ""
+                if let data = response.data {
+                    resultString = String(data: data, encoding: .utf8)!
+                    print (resultString)
+                }
+                if response.response?.statusCode == 200 {
+                    print ("User information updated successfully")
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    SVProgressHUD.showError(withStatus: resultString)
+                    
+                    let errorString = "CONNECTION_ERROR".localized() + "\(response.response?.statusCode ?? -1) \(resultString)"
+                    SVProgressHUD.showError(withStatus: errorString)
+                }
+            }
+    }
+    
+    
     
 }
