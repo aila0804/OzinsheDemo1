@@ -231,6 +231,30 @@ class UserInfoViewController: UIViewController {
             }
     }
     
+    // Add subviews & constraints
     
+    func setupUI() {
+        view.backgroundColor = UIColor (named: "111827")
+        navigationItem.title = "Персональная информация"
+        
+        view.addSubviews (yourNameLabel, nameTextField, grayView, emailLabel, emailTextField, grayView2, phoneLabel, phoneTextField, grayView3, birthLabel, birthTextField, grayView4, saveChangesButton)
+        
+        yourNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(24)
+            make.left.equalToSuperview().inset(24)
+            make.height.equalTo(21)
+        }
+        nameTextField.snp.makeConstraints { make in
+            make.top.equalTo(yourNameLabel.snp.bottom)
+            make.left.right.equalToSuperview().inset(24)
+            make.height.equalTo(33)
+        }
+        
+        grayView.snp.makeConstraints { make in
+            make.top.equalTo(nameTextField.snp.bottom)
+            make.left.right.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+        }
+    }
     
 }
