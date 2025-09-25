@@ -255,6 +255,39 @@ class UserInfoViewController: UIViewController {
             make.left.right.equalToSuperview().inset(24)
             make.height.equalTo(1)
         }
+        
+        emailLabel.snp.makeConstraints { make in
+            make.top.equalTo(grayView.snp.bottom).offset(24)
+            make.left.right.equalToSuperview().inset(24)
+        }
+        
+        emailTextField.snp.makeConstraints { make in
+            make.top.equalTo(emailLabel.snp.bottom).offset(8)
+            make.left.right.equalToSuperview().inset(24)
+        }
+        
+        grayView2.snp.makeConstraints { make in
+            make.top.equalTo(emailTextField.snp.bottom).offset(12)
+            make.left.right.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+        }
+        
+        phoneLabel.snp.makeConstraints { make in
+            make.top.equalTo(grayView2.snp.bottom).offset(24)
+            make.left.right.equalToSuperview().inset(24)
+        }
+        
+        phoneTextField.snp.makeConstraints { make in
+            make.top.equalTo(phoneLabel.snp.bottom).offset(8)
+            make.left.right.equalToSuperview().inset (24)
+        }
+        
+        grayView3.snp.makeConstraints { make in
+            make.top.equalTo(phoneTextField.snp.bottom)
+            make.left.right.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+        }
+        
     }
     
 }
