@@ -288,6 +288,28 @@ class UserInfoViewController: UIViewController {
             make.height.equalTo(1)
         }
         
+        birthLabel.snp.makeConstraints { make in
+            make.top.equalTo(grayView3.snp.bottom).offset(24)
+            make.left.right.equalToSuperview().inset(24)
+        }
+        
+        birthTextField.snp.makeConstraints { make in
+            make.top.equalTo(birthLabel.snp.bottom).offset(8)
+            make.left.right.equalToSuperview().inset(24)
+        }
+        
+        grayView4.snp.makeConstraints { make in
+            make.top.equalTo(birthTextField.snp.bottom).offset(12)
+            make.left.right.equalToSuperview().inset(24)
+            make.height.equalTo(1)
+        }
+        
+        saveChangesButton.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(24)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(8)
+            make.height.equalTo (56)
+        }
+        
     }
     
 }
