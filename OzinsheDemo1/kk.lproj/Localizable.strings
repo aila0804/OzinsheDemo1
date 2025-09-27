@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  OzinsheDemo1
+
+  Created by Aila Aila on 27.09.2025.
+  
+*/
+
+"MY PROFILE" = "Менін профилім";
+"LANGUAGE" = "Tin";
+"USER_INFO_NAME_LABEL" = "Сіздін атыныз";
+"USER_INFO_NAME_TEXT_FIELD" = "Атынызды ентізініз";
+"US INFO_PHORE_LABEL" = "Телефон" ;
+"US_INFO_BIRTH_LABEL" = "Туылган кунініз";
+"US_INFO_SAVE_BUTTON" = "Єатерістерді сактау";
+"USER_INFO_BUTTON" = "Жеке деректер" ;
+"USER_INFO_EDIT_LABEL" = "Вндеу" ;
+"CHANGE_ PASSWORD_BUTTON" = "Купия сезді езгерту";
+"DARK_MODE_LABEL" = "Каранты режим";
+"PROFILE_TITLE" = "Профиль";
+"USER_INFO_NAVIGATION" = "Жеке деректер";
+"USER_PASSWORD_CHANGE" = "Сіздін купия сезініз";
+"CHANGE_PASSWORD_LABEL" = "Купия сез";
+"REPEAT_PASSWORD_LABEL" = "Купия сезінізді кайталаныз";
+"CHANGE_ PASSWORD_NAVIGATION" = "Жана Купия сез";
+"LOG_OUT_LABEL" = "Шыру";
+"LOG_OUT_QUES_LABEL" = "Cis шынымен аккаунтыныздан шыгасыз ба?";
+"LOG_OUT_BUTTON" = "Ия, шыгу";
+"NO_LOG_OUT_BUTTON" = "Жок";
+"SHARE_LABEL" = "Белісу";
+"ADD_TO_FAVORITE" = "Тізімге косу";
+"FULL_DESCRIPTION_BUTTON" = "Толыгырак";
+"DIRECTOR_LABEL" = "Режиссер";
+"PRODUCER_LABEL" = "Продюсер";
+

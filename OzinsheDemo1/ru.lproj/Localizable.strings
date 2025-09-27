@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  OzinsheDemo1
+
+  Created by Aila Aila on 27.09.2025.
+  
+*/
+
+"MY PROFILE" = "Мой профиль";
+"LANGUAGE" = "Язык";
+"USER_INFO_NAME_LABEL" = "Ваше имя";
+"USER_INFO_NAME_TEXT_FIELD" = "Введите имя";
+"US_INFO_PHORE_LABEL" = "Телефон";
+"US_INFO_BIRTH_LABEL" = "Дата рождения";
+"US_INFO_SAVE_BUTTON" = "Сохранить изменения";
+"USER_INFO_BUTTON" = "Личные данные";
+"USER_INFO_EDIT_LABEL" = "Измемить";
+"CHANGE_PASSWORD_BUTTON" = "Поменять пароль";
+"DARK_MODE_LABEL" = "Темный режим";
+"PROFILE_TITLE" = "Профиль" ;
+"USER_INFO_NAVIGATION" = "Личные данные"
+"USER_PASSWORD_CHANGE" = "Ваш пароль";
+"CHANGE_PASSWORD_LABEL" = "Пароль";
+"REPEAT_PASSWORD_LABEL" = "Повторите пароль";
+"CHANGE_PASSWORD_NAVIGATION" = "Новый пароль";
+"LOG_OUT_LABEL" = "Выход" ;
+"LOG_OUT_QUES_LABEL" = "Вы хотите выйти?";
+"LOG_OUT_BUTTON" = "Да, выйти" ;
+"NO_LOG_OUT_BUTTON" = "Нет" ;
+"CONTINUE _WATCH_LABEL" = "Продолжить просмотр";
+"TOTAL_VIDEO_LABEL" = "Показать все";
+"CHODSE_GENRE_LABEL" = "Выбрать жанр";
+"SHARE_LABEL" = "Поделиться" ;
+"ADD_TO_FAVORITE" = "Добавить";
