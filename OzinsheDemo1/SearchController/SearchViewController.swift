@@ -11,8 +11,6 @@ import SVProgressHUD
 import Alamofire
 import SwiftyJSON
 
-//class SearchViewController: UIViewController {
-
 class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let attributes = super.layoutAttributesForElements(in: rect)
@@ -32,6 +30,39 @@ class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
         return attributes
     }
+}
+
+class SearchViewController: UIViewController {
+    
+    var isLoading: Bool = false
+    
+    var
+    categories: [Category] = []
+    
+    var movies: [Movie] = []
+    
+    // add ui elements
+    
+    let searchTextField = {
+        let searchTF = TextFieldWithPadding()
+        searchTF.padding = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        searchTF.placeholder = "Іздеу"
+        searchTF.font = UIFont(name: "SF-Pro-Display-Semibold", size: 16)
+        searchTF.textColor = UIColor (named: "111827")
+        searchTF.layer.borderWidth = 1.0
+        searchTF.layer.borderColor = UIColor (red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
+        searchTF.layer.cornerRadius = 12.0
+        return searchTF
+    }()
+    
+    lazy var exitButton = {
+        let exitBut = UIButton ()
+        exitBut.setImage (UIImage (named: "exitButton"), for: .normal)
+        exitBut.contentMode = .scaleToFill
+        exitBut.addTarget(self, action: #selector(clearTextField), for: .touchUpInside)
+        return exitBut
+    } ()
+    
 }
 
 
