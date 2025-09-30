@@ -63,6 +63,13 @@ class SearchViewController: UIViewController {
         return exitBut
     } ()
     
+    lazy var searchButton = {
+    let searchBut = UIButton()
+    searchBut.setImage(UIImage (named: "searchVC"), for: .normal)
+        searchBut.contentMode = .scaleToFill
+    searchBut.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+    return searchBut
+    }()
 }
 
 
