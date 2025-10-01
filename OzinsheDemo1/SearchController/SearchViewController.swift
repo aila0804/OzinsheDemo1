@@ -70,8 +70,47 @@ class SearchViewController: UIViewController {
     searchBut.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
     return searchBut
     }()
+    
+    let titleLabel = {
+        let label = UILabel()
+        label.text = "Санаттар"
+        label.font = UIFont (name: "SF-Pro-Display-Bold", size: 24)
+        label.textColor = UIColor(named: "111827")
+        return label
+    }()
+    
+    let collectionView: UICollectionView = {
+        let layout = LeftAlignedCollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 16.0, left: 24.0, bottom: 16.0, right: 24.0)
+        layout.minimumLineSpacing = 16
+        layout.minimumInteritemSpacing = 8
+        layout.itemSize = CGSize(width: 128, height: 34)
+        layout.estimatedItemSize.width = 100
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: "SearchCollectionViewCell")
+        collectionView.backgroundColor = UIColor (named: "111827" )
+        collectionView.contentInsetAdjustmentBehavior = .automatic
+        return collectionView
+    }()
+    
+    let tableView: UITableView = {
+        let tv = UITableView()
+        tv.separatorStyle = . none
+        tv.allowsSelection = true
+        tv.showsVerticalScrollIndicator = false
+        tv.showsHorizontalScrollIndicator = false
+        tv.backgroundColor = UIColor (named: "111827")
+        //Регистрация table view cell
+        tv.register(MovieTableViewCell.self, forCellReuseIdentifier: "MovieTableCell")
+        return tv
+    }()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+    }
+    
 }
-
 
 
 
