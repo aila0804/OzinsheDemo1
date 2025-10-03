@@ -10,6 +10,8 @@ import SnapKit
 
 class MovieTableViewCell: UITableViewCell {
     
+    let identifier = "MovieTableCell"
+    
     lazy var posterImageView = {
         
         let imageView = UIImageView()

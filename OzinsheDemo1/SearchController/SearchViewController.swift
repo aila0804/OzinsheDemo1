@@ -107,8 +107,89 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Collection View
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
+        addViews()
+        exitButton.isHidden = true
+        hideKeyboardWhenTappedAround()
+        downloadCategories()
         
     }
+    
+    func hideKeyboardWhenTappedAround () {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer (target: self, action: #selector(self.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing (true)
+    }
+    
+    @objc func clearTextField() {
+        searchTextField.text = downloadSearchMovies()
+    }
+    
+    @objc func searchButtonTapped() {
+        downloadSearchMovies()
+    }
+    
+    // downloadCategories
+    func downloadCategories() {
+    SVProgressHUD.show()
+    let headers: HTTPHeaders = ["Authorization": "Bearer\(Storage.sharedInstance.accessToken)"]
+        AF.request(Urls.CATEGORIES_URL, method: .get, headers:
+                    headers).responseData { response in
+            SVProgressHUD.dismiss()
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+                print (resultString)
+            }
+            
+            if response.response?.statusCode == 200 {
+                let json = JSON(response.data!)
+                print( "JSON: \(json) ")
+                
+                if let array = json.array {
+                    for item in array {
+                        let category = Category(json: item)
+                        self.categories.append(category)
+                    }
+                    
+                    self.collectionView.reloadData()
+                } else {
+                    SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+                }
+                } else {
+                    var ErrorString = "CONNECTION_ERROR".localized()
+                    if let sCode = response.response?.statusCode {
+                        ErrorString = ErrorString + "\(sCode)"
+                    }
+                    ErrorString = ErrorString + "\(resultString)"
+                    SVProgressHUD.showError(withStatus: "\(ErrorString)")
+                }
+            }
+        }
+    
+    func addViews() {
+        
+    view.backgroundColor = UIColor(named: "111827")
+
+    view.addSubviews(searchButton, searchTextField, exitButton,
+    titleLabel, collectionView, tableView)
+
+        searchTextField.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(24)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(96)
+            make.height.equalTo(56)
+            make.width.equalTo(255)
+        }
     
 }
 
