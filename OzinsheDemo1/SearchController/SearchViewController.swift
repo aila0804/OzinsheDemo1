@@ -191,6 +191,20 @@ class SearchViewController: UIViewController {
             make.width.equalTo(255)
         }
     
+        exitButton.snp.makeConstraints { make in
+            make.height.equalTo(52)
+            make.width.equalTo(52)
+            make.right.equalTo(searchTextField.snp.right).offset(0)
+            make.centerY.equalTo(searchTextField)
+        }
+        
+        searchButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.width.equalTo(56)
+            make.height.equalTo(56)
+        }
+        
 }
 
 
