@@ -64,11 +64,11 @@ class SearchViewController: UIViewController {
     } ()
     
     lazy var searchButton = {
-    let searchBut = UIButton()
-    searchBut.setImage(UIImage (named: "searchVC"), for: .normal)
+        let searchBut = UIButton()
+        searchBut.setImage(UIImage (named: "searchVC"), for: .normal)
         searchBut.contentMode = .scaleToFill
-    searchBut.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
-    return searchBut
+        searchBut.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        return searchBut
     }()
     
     let titleLabel = {
@@ -140,8 +140,8 @@ class SearchViewController: UIViewController {
     
     // downloadCategories
     func downloadCategories() {
-    SVProgressHUD.show()
-    let headers: HTTPHeaders = ["Authorization": "Bearer\(Storage.sharedInstance.accessToken)"]
+        SVProgressHUD.show()
+        let headers: HTTPHeaders = ["Authorization": "Bearer\(Storage.sharedInstance.accessToken)"]
         AF.request(Urls.CATEGORIES_URL, method: .get, headers:
                     headers).responseData { response in
             SVProgressHUD.dismiss()
@@ -165,24 +165,24 @@ class SearchViewController: UIViewController {
                 } else {
                     SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
                 }
-                } else {
-                    var ErrorString = "CONNECTION_ERROR".localized()
-                    if let sCode = response.response?.statusCode {
-                        ErrorString = ErrorString + "\(sCode)"
-                    }
-                    ErrorString = ErrorString + "\(resultString)"
-                    SVProgressHUD.showError(withStatus: "\(ErrorString)")
+            } else {
+                var ErrorString = "CONNECTION_ERROR".localized()
+                if let sCode = response.response?.statusCode {
+                    ErrorString = ErrorString + "\(sCode)"
                 }
+                ErrorString = ErrorString + "\(resultString)"
+                SVProgressHUD.showError(withStatus: "\(ErrorString)")
             }
         }
+    }
     
     func addViews() {
         
-    view.backgroundColor = UIColor(named: "111827")
-
-    view.addSubviews(searchButton, searchTextField, exitButton,
-    titleLabel, collectionView, tableView)
-
+        view.backgroundColor = UIColor(named: "111827")
+        
+        view.addSubviews(searchButton, searchTextField, exitButton,
+                         titleLabel, collectionView, tableView)
+        
         searchTextField.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(24)
             make.left.equalToSuperview().inset(24)
@@ -190,7 +190,7 @@ class SearchViewController: UIViewController {
             make.height.equalTo(56)
             make.width.equalTo(255)
         }
-    
+        
         exitButton.snp.makeConstraints { make in
             make.height.equalTo(52)
             make.width.equalTo(52)
@@ -205,23 +205,51 @@ class SearchViewController: UIViewController {
             make.height.equalTo(56)
         }
         
-}
-
-
-
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        view.backgroundColor = .white
-        // Do any additional setup after loading the view.
-//    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        titleLabel.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(24)
+            make.height.equalTo(28)
+            make.top.equalTo(searchTextField.snp.bottom).offset(35)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom)
+            make.right.left.equalToSuperview()
+            make.bottom.equalTo(tableView.snp.top)
+            make.height.equalTo(340)
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.bottom.left.right.equalTo(view.safeAreaLayoutGuide)
+        }
     }
-    */
+    
+    func downloadSearchMovies() {
+        if searchTextField.text!.isEmpty {
+            titleLabel.text = "Санаттар"
+            collectionView.isHidden = false
+            tableView.isHidden = true
+            movies.removeAll()
+            tableView.reloadData()
+            exitButton.isHidden = true
+        }
+    
+    
+    
+    
+    //    override func viewDidLoad() {
+    //        super.viewDidLoad()
+    //        view.backgroundColor = .white
+    // Do any additional setup after loading the view.
+    //    }
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+}
