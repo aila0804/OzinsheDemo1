@@ -232,9 +232,28 @@ class SearchViewController: UIViewController {
             tableView.reloadData()
             exitButton.isHidden = true
         }
-    
-    
-    
+        
+        // Hide table view
+        
+        tableView.snp.remakeConstraints { make in
+            make.top.equalTo(collectionView.snp.bottom)
+            make.bottom.left.right.equalTo(view.safeAreaLayoutGuide)
+        }
+        return
+    } else {
+        titleLabel.text = "Іздеу натижелері"
+        collectionView.isHidden = true
+        
+        // Show table view
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.bottom.left.right.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        tableView.isHidden = false
+        exitButton.isHidden = false
+    }
+    SVProgressHUD.show()
     
     //    override func viewDidLoad() {
     //        super.viewDidLoad()
