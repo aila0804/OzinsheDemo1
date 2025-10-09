@@ -304,14 +304,36 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return movies.count
 }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableCell", for: indexPath) as! MovieTableViewCell
         cell.setData(movie: movies[indexPath.row])
         return cell
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 153.0
     }
+    
+    func tableView(_tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movieinfoVC = MovieInfoController()
+        movieinfoVC.movie = movies[indexPath.row]
+        navigationController?.show(movieinfoVC, sender: self)
+    }
+    
+    // Collection view data source
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return categories.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as! SearchCollectionViewCell
+        
+        cell.label.text = categories[indexPath.row].name
+        cell.backView.layer.cornerRadius = 8
+        return cell
+    }
+    
     
     //    override func viewDidLoad() {
     //        super.viewDidLoad()
