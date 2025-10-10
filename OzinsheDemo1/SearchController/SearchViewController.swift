@@ -301,9 +301,9 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         return 1
     }
     
-func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return movies.count
-}
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return movies.count
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableCell", for: indexPath) as! MovieTableViewCell
@@ -334,7 +334,18 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let categoryTableViewController = CategoryTableViewController()
+        categoryTableViewController.categoryID = categories[indexPath.row].id
+        categoryTableViewController.categoryName = categories[indexPath.row].name
+        
+        navigationController?.show(categoryTableViewController, sender: self)
+        navigationItem.title = ""
+    }
+}
+        
     //    override func viewDidLoad() {
     //        super.viewDidLoad()
     //        view.backgroundColor = .white
