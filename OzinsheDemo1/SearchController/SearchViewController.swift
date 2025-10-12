@@ -345,7 +345,25 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         navigationItem.title = ""
     }
 }
+
+// UITextFieldDelegate extension
+extension SearchViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == searchTextField {
+            searchTextField.layer.borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == searchTextField {
+            searchTextField.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
+        }
         
+        func textFieldDidChanged(_textField: UITextField) {
+            downloadSearchMovies ()
+        }
+    }
     //    override func viewDidLoad() {
     //        super.viewDidLoad()
     //        view.backgroundColor = .white
