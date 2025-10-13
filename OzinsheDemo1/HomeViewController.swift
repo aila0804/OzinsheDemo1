@@ -11,15 +11,25 @@ import SVProgressHUD
 import Alamofire
 import SwiftyJSON
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, MovieProtocol {
     
-    lazy var labelName = {
-        let label = "Name"
-        
-        return label
-    }()
+    var mainMovies: [MainMovies] = []
     
+//    lazy var labelName = {
+//        let label = "Name"
+//        
+//        return label
+//    }()
     
+    // Add TableView
+    let tableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = true
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.backgroundColor = UIColor(named: "111827")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
