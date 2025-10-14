@@ -15,11 +15,11 @@ class HomeViewController: UIViewController, MovieProtocol {
     
     var mainMovies: [MainMovies] = []
     
-//    lazy var labelName = {
-//        let label = "Name"
-//        
-//        return label
-//    }()
+    //    lazy var labelName = {
+    //        let label = "Name"
+    //
+    //        return label
+    //    }()
     
     // Add TableView
     let tableView = {
@@ -29,7 +29,16 @@ class HomeViewController: UIViewController, MovieProtocol {
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
         tableView.backgroundColor = UIColor(named: "111827")
-    }
+        
+        //Регистрация table view cell
+        tableView.register(MainBannerTableViewCell.self, forCellReuseIdentifier: "MainBannerCell")
+        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: "HistoryCell")
+        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "MainCell")
+        tableView.register(GenreTableViewCell.self, forCellReuseIdentifier: "GenreCell")
+        return tableView
+    }()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
