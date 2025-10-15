@@ -42,8 +42,35 @@ class HomeViewController: UIViewController, MovieProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+        //        view.backgroundColor = .white
+        
+        setupUI()
+        downloadMainBanners()
+        addNavBarImage()
+    }
+    
+    func addNavBarImage () {
+        let image = UIImage (named: "logoMainPage")
+        let logoImageView = UIImageView(image: image)
+        let imageItem = UIBarButtonItem.init (customView: logoImageView)
+        navigationItem.leftBarButtonItem = imageItem
+    }
+    
+    func setupUI() {
+        view.backgroundColor = UIColor(named: "111827" )
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.right.equalToSuperview()
+            make.left.equalToSuperview()
+        }
+    }
+            
+            
     }
     
 
