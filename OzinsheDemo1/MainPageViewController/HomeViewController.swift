@@ -69,8 +69,40 @@ class HomeViewController: UIViewController, MovieProtocol {
             make.left.equalToSuperview()
         }
     }
+    
+    // downloads
+    // step 1
+    func downloadMainBanners() {
+    SVProgressHUD.show()
+    let headers: HTTPHeaders = [
+    "Authorization": "Behrer \(Storage.sharedInstance.accessToken)"
+    ]
+    AF.request(Urls.MAIN_BANNERS_URL, method: .get, headers: headers).responseData { response in
+        
+    SVProgressHUD.dismiss ()
+    var resultString = ""
+        if let data = response.data {
+            resultString = String(data: data, encoding: .utf8)!
+            print (resultString)
+        }
+        
+        if response.response.statusCode == 200 {
+            let json = JSON(response.data!)
+            print ("JSON: \(json)")
             
-            
+            if let array = json.array {
+                let movie = MainMovies()
+                movie.cellType = .mainBanner
+                for item in array {
+                    let bannerMovie = BannerMovie(json: item)
+                    movie.bannerMovie.append(bannerMovie)
+                }
+            }
+            self mainMovies.append(movie)
+            self.tableView.reloadData()
+        } else {
+    
+    
     }
     
 
