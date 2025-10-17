@@ -77,30 +77,44 @@ class HomeViewController: UIViewController, MovieProtocol {
     let headers: HTTPHeaders = [
     "Authorization": "Behrer \(Storage.sharedInstance.accessToken)"
     ]
-    AF.request(Urls.MAIN_BANNERS_URL, method: .get, headers: headers).responseData { response in
-        
-    SVProgressHUD.dismiss ()
-    var resultString = ""
-        if let data = response.data {
-            resultString = String(data: data, encoding: .utf8)!
-            print (resultString)
-        }
-        
-        if response.response.statusCode == 200 {
-            let json = JSON(response.data!)
-            print ("JSON: \(json)")
+        AF.request(Urls.MAIN_BANNERS_URL, method: .get, headers: headers).responseData { response in
             
-            if let array = json.array {
-                let movie = MainMovies()
-                movie.cellType = .mainBanner
-                for item in array {
-                    let bannerMovie = BannerMovie(json: item)
-                    movie.bannerMovie.append(bannerMovie)
-                }
+            SVProgressHUD.dismiss ()
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+                print (resultString)
             }
-            self mainMovies.append(movie)
-            self.tableView.reloadData()
-        } else {
+            
+            if response.response.statusCode == 200 {
+                let json = JSON(response.data!)
+                print ("JSON: \(json)")
+                
+                if let array = json.array {
+                    let movie = MainMovies()
+                    movie.cellType = .mainBanner
+                    for item in array {
+                        let bannerMovie = BannerMovie(json: item)
+                        movie.bannerMovie.append(bannerMovie)
+                    }
+                    self.mainMovies.append(movie)
+                    self.tableView.reloadData()
+                    
+                } else {
+                    SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+                }
+            } else {
+                var ErrorString = "CONNECTION_ERROR".localized()
+                
+                if let sCode = response.response?.statusCode {
+                    ErrorString = ErrorString + " \(sCode)"
+                }
+                
+                ErrorString = ErrorString + " \(resultString)"
+                SVProgressHUD.showError(withStatus: "\(ErrorString)")
+            }
+            self.downloadUserHistory()
+        }
     
     
     }
