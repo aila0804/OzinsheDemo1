@@ -115,9 +115,86 @@ class HomeViewController: UIViewController, MovieProtocol {
             }
             self.downloadUserHistory()
         }
-    
-    
     }
+    
+    // step 2
+    func downloadUserHistory() {
+    SVProgressHUD.show()
+    let headers: HTTPHeaders = ["Authorization": "Bearer\(Storage.sharedInstance.accessToken)"]
+        AF.request(Urls.USER_HISTORY_URL, method: .get, headers: headers).responseData { response in
+            SVProgressHUD.dismiss()
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+                print (resultString)
+            }
+            if response.response?.statusCode == 200 {
+                let json = JSON( response.data!)
+                print ("JSON: ((json)")
+                
+                if let array = json.array {
+                    let movie = MainMovies ()
+                    movie.cellType = .userHistory
+                    for item in array {
+                        let historyMovie = Movie(json: item)
+                        movie.movies.append(historyMovie)
+                    }
+                    if array.count > 0 {
+                        self.mainMovies.append(movie)
+                    }
+                        self.tableView.reloadData()
+                    } else {
+                        SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+                    }
+                } else {
+                    var ErrorString = "CONNECTION_ERROR".localized()
+                    if let sCode = response.response?.statusCode {
+                        ErrorString = ErrorString + " \(sCode)"
+                    }
+                    ErrorString = ErrorString + " \(resultString)"
+                    SVProgressHUD.showError(withStatus: "\(ErrorString)")
+                }
+                self.downloadMainMovies()
+            }
+        }
+    
+    // step 3
+    func downloadMainMovies() {
+        SVProgressHUD.show()
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(Storage.sharedInstance.accessToken)"]
+        AF.request(Urls.MAIN_MOVIES_URL, method: .get, headers: headers).responseData { response in
+            SVProgressHUD.dismiss()
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+                print (resultString)
+            }
+            
+            if response.response?.statusCode == 200 {
+                let json = JSON(response.data!)
+                print ("JSON: \(json)")
+                
+                if let array = json.array {
+                    for item in array {
+                        let movie = MainMovies(json: item)
+                        self.mainMovies.append(movie)
+                    }
+                    self.tableView.reloadData ()
+                } else {
+                    SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized ())
+                }
+            } else {
+                var ErrorString = "CONNECTION_ERROR".localized()
+                if let sCode = response.response?.statusCode {
+                    ErrorString = ErrorString + " \(sCode)"
+                }
+                ErrorString = ErrorString + " \(resultString)"
+                SVProgressHUD.showError(withStatus: "\(ErrorString)")
+            }
+            self.downloadGenres()
+        }
+    }
+        
     
 
     /*
