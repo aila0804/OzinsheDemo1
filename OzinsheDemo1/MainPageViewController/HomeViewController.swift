@@ -195,6 +195,54 @@ class HomeViewController: UIViewController, MovieProtocol {
         }
     }
         
+    // step 4
+    func downloadGenres () {
+    SVProgressHUD.show()
+        
+    let headers: HTTPHeaders = ["Authorization": "Bearer \(Storage.sharedInstance.accessToken)"]
+        AF.request(Urls.GET_GENRES, method: .get, headers: headers).responseData { response in
+            SVProgressHUD.dismiss()
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+                print(resultString)
+            }
+            
+            if response.response?.statusCode == 200 {
+                let json = JSON( response.data!)
+                print ( "JSON: ((json)")
+                
+                if let array = json.array {
+                    let movie = MainMovies()
+                    movie.cellType = .genre
+                    for item in array {
+                        let genre = Genre(json: item)
+                        movie.genres.append(genre)
+                    }
+                    if self.mainMovies.count > 4 {
+                        if self.mainMovies[1].cellType == .userHistory {
+                            self.mainMovies.insert(movie, at: 4)
+                        } else {
+                            self.mainMovies.insert(movie, at: 3)
+                        }
+                    } else {
+                        self.mainMovies.append(movie)
+                    }
+                    self.tableView.reloadData()
+                } else {
+                    SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+                }
+                } else {
+                    var ErrorString = "CONNECTION_ERROR".localized()
+                    if let sCode = response.response?.statusCode {
+                        ErrorString = ErrorString + " \(sCode) "
+                    }
+                    ErrorString = ErrorString + " \(resultString)"
+                    SVProgressHUD.showError(withStatus: "\(ErrorString)")
+                }
+                self.downloadCategoryAges ()
+            }
+        }
     
 
     /*
