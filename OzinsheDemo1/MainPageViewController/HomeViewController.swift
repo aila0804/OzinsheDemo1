@@ -73,10 +73,10 @@ class HomeViewController: UIViewController, MovieProtocol {
     // downloads
     // step 1
     func downloadMainBanners() {
-    SVProgressHUD.show()
-    let headers: HTTPHeaders = [
-    "Authorization": "Behrer \(Storage.sharedInstance.accessToken)"
-    ]
+        SVProgressHUD.show()
+        let headers: HTTPHeaders = [
+            "Authorization": "Behrer \(Storage.sharedInstance.accessToken)"
+        ]
         AF.request(Urls.MAIN_BANNERS_URL, method: .get, headers: headers).responseData { response in
             
             SVProgressHUD.dismiss ()
@@ -119,8 +119,8 @@ class HomeViewController: UIViewController, MovieProtocol {
     
     // step 2
     func downloadUserHistory() {
-    SVProgressHUD.show()
-    let headers: HTTPHeaders = ["Authorization": "Bearer\(Storage.sharedInstance.accessToken)"]
+        SVProgressHUD.show()
+        let headers: HTTPHeaders = ["Authorization": "Bearer\(Storage.sharedInstance.accessToken)"]
         AF.request(Urls.USER_HISTORY_URL, method: .get, headers: headers).responseData { response in
             SVProgressHUD.dismiss()
             var resultString = ""
@@ -142,21 +142,21 @@ class HomeViewController: UIViewController, MovieProtocol {
                     if array.count > 0 {
                         self.mainMovies.append(movie)
                     }
-                        self.tableView.reloadData()
-                    } else {
-                        SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
-                    }
+                    self.tableView.reloadData()
                 } else {
-                    var ErrorString = "CONNECTION_ERROR".localized()
-                    if let sCode = response.response?.statusCode {
-                        ErrorString = ErrorString + " \(sCode)"
-                    }
-                    ErrorString = ErrorString + " \(resultString)"
-                    SVProgressHUD.showError(withStatus: "\(ErrorString)")
+                    SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
                 }
-                self.downloadMainMovies()
+            } else {
+                var ErrorString = "CONNECTION_ERROR".localized()
+                if let sCode = response.response?.statusCode {
+                    ErrorString = ErrorString + " \(sCode)"
+                }
+                ErrorString = ErrorString + " \(resultString)"
+                SVProgressHUD.showError(withStatus: "\(ErrorString)")
             }
+            self.downloadMainMovies()
         }
+    }
     
     // step 3
     func downloadMainMovies() {
@@ -194,12 +194,12 @@ class HomeViewController: UIViewController, MovieProtocol {
             self.downloadGenres()
         }
     }
-        
+    
     // step 4
     func downloadGenres () {
-    SVProgressHUD.show()
+        SVProgressHUD.show()
         
-    let headers: HTTPHeaders = ["Authorization": "Bearer \(Storage.sharedInstance.accessToken)"]
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(Storage.sharedInstance.accessToken)"]
         AF.request(Urls.GET_GENRES, method: .get, headers: headers).responseData { response in
             SVProgressHUD.dismiss()
             var resultString = ""
@@ -232,18 +232,67 @@ class HomeViewController: UIViewController, MovieProtocol {
                 } else {
                     SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
                 }
-                } else {
-                    var ErrorString = "CONNECTION_ERROR".localized()
-                    if let sCode = response.response?.statusCode {
-                        ErrorString = ErrorString + " \(sCode) "
-                    }
-                    ErrorString = ErrorString + " \(resultString)"
-                    SVProgressHUD.showError(withStatus: "\(ErrorString)")
+            } else {
+                var ErrorString = "CONNECTION_ERROR".localized()
+                if let sCode = response.response?.statusCode {
+                    ErrorString = ErrorString + " \(sCode) "
                 }
-                self.downloadCategoryAges ()
+                ErrorString = ErrorString + " \(resultString)"
+                SVProgressHUD.showError(withStatus: "\(ErrorString)")
+            }
+            self.downloadCategoryAges()
+        }
+    }
+    
+    // step 5
+    func downloadCategoryAges() {
+        SVProgressHUD.show()
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(Storage.sharedInstance.accessToken)"]
+        
+        AF.request(Urls.GET_AGES, method: .get, headers: headers).responseData { response in
+            
+            SVProgressHUD.dismiss()
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+                print (resultString)
+            }
+            
+            if response.response?.statusCode == 200 {
+                let json = JSON(response.data!)
+                print ("JSON: ((json)")
+                
+                if let array = json.array {
+                    let movie = MainMovies()
+                    movie.cellType = .ageCategory
+                    for item in array {
+                        let ageCategory = CategoryAge(json: item)
+                        movie.categoryAges.append(ageCategory)
+                    }
+                    if self.mainMovies.count > 8 {
+                        if self.mainMovies[1].cellType == .userHistory {
+                            self.mainMovies.insert(movie, at: 8)
+                        } else {
+                            self.mainMovies.insert(movie, at: 7)
+                        }
+                    } else {
+                        self.mainMovies.append(movie)
+                    }
+                    self.tableView.reloadData()
+                } else {
+                    SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+                }
+            } else {
+                var ErrorString = "CONNECTION_ERROR".localized()
+                if let sCode = response.response?.statusCode {
+                    ErrorString = ErrorString + " \(sCode)"
+                }
+                ErrorString = ErrorString + " \(resultString)"
+                SVProgressHUD.showError(withStatus: "\(ErrorString)")
             }
         }
-    
+    }
+}
 
     /*
     // MARK: - Navigation
