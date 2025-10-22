@@ -294,6 +294,26 @@ class HomeViewController: UIViewController, MovieProtocol {
     }
 }
 
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    // Table view data source
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, number0fRowsInSection section: Int) -> Int {
+        return mainMovies.count
+    }
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+// mainBanner
+    if mainMovies[indexPath.row].cellType == .mainBanner {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MainBannerCell", for: indexPath) as! MainBannerTableViewCell
+        
+        cell.setData(mainMovie: mainMovies[indexPath.row])
+        cell.delegate = self
+        return cell
+    }
+
     /*
     // MARK: - Navigation
 
