@@ -313,6 +313,28 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         cell.delegate = self
         return cell
     }
+    
+    //userHistory
+    if mainMovies[indexPath.row].cellType == .userHistory {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell", for: indexPath) as! HistoryTableViewCell
+        
+        cell.setData (mainMovie: mainMovies[indexPath.row])
+        cell.delegate = self
+        
+        return cell
+    }
+    
+    //genre or ageCategory
+    if mainMovies[indexPath.row].cellType == .genre ||
+        mainMovies[indexPath.row].cellType == .ageCategory {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GenreCell", for: indexPath) as! GenreTableViewCell
+        
+        cell.setData(mainMovie: mainMovies[indexPath.row])
+        
+        return cell
+    }
+    
+    
 
     /*
     // MARK: - Navigation
