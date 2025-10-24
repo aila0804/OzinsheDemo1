@@ -303,37 +303,60 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, number0fRowsInSection section: Int) -> Int {
         return mainMovies.count
     }
-func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-// mainBanner
-    if mainMovies[indexPath.row].cellType == .mainBanner {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MainBannerCell", for: indexPath) as! MainBannerTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // mainBanner
+        if mainMovies[indexPath.row].cellType == .mainBanner {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MainBannerCell", for: indexPath) as! MainBannerTableViewCell
+            
+            cell.setData(mainMovie: mainMovies[indexPath.row])
+            cell.delegate = self
+            return cell
+        }
+        
+        //userHistory
+        if mainMovies[indexPath.row].cellType == .userHistory {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell", for: indexPath) as! HistoryTableViewCell
+            
+            cell.setData (mainMovie: mainMovies[indexPath.row])
+            cell.delegate = self
+            
+            return cell
+        }
+        
+        //genre or ageCategory
+        if mainMovies[indexPath.row].cellType == .genre ||
+            mainMovies[indexPath.row].cellType == .ageCategory {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GenreCell", for: indexPath) as! GenreTableViewCell
+            
+            cell.setData(mainMovie: mainMovies[indexPath.row])
+            
+            return cell
+        }
+        
+        let cell = tableView.deueueReusableCell(withIdentifier: "MainCell", for: indexPath) as! MainTableViewCell
         
         cell.setData(mainMovie: mainMovies[indexPath.row])
         cell.delegate = self
-        return cell
-    }
-    
-    //userHistory
-    if mainMovies[indexPath.row].cellType == .userHistory {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell", for: indexPath) as! HistoryTableViewCell
-        
-        cell.setData (mainMovie: mainMovies[indexPath.row])
-        cell.delegate = self
         
         return cell
     }
     
-    //genre or ageCategory
-    if mainMovies[indexPath.row].cellType == .genre ||
-        mainMovies[indexPath.row].cellType == .ageCategory {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GenreCell", for: indexPath) as! GenreTableViewCell
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        cell.setData(mainMovie: mainMovies[indexPath.row])
-        
-        return cell
+        if mainMovies[indexPath.row].cellType == .mainBanner {
+            return 272.0
+        }
+        if mainMovies[indexPath.row].cellType == .userHistory {
+            return 228.0
+        }
+        if mainMovies[indexPath.row].cellType == .genre ||
+            mainMovies[indexPath.row].cellType == .ageCategory {
+            return 184.0
+        }
+        //mainMovie
+        return 288.0
     }
-    
     
 
     /*
