@@ -358,6 +358,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return 288.0
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath）{
+        if mainMovies[indexPath.row].cellType != .mainMovie {
+            return
+        }
 
     /*
     // MARK: - Navigation
