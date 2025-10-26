@@ -362,15 +362,22 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if mainMovies[indexPath.row].cellType != .mainMovie {
             return
         }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        let categoryTableViewController = CategoryTableViewController()
+        
+        categoryTableViewController.categoryID = mainMovies[indexPath.row].categoryId
+        categoryTableViewController.categoryName = mainMovies[indexPath.row].categoryName
+        
+        navigationItem.title = ""
+        navigationController?.show(categoryTableViewController, sender: self)
     }
-    */
+    
+    // MovieProtocol
+    func movieDidSelect(movie: Movie) {
+        let movieInfoVC = MovieInfoController()
+        movieInfoVC.movie = movie
+        navigationController?.show(movieInfoVC, sender:
+                                    self)
+    }
 
 }
