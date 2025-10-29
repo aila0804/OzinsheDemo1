@@ -24,5 +24,24 @@ class BannerCollectionViewCell: UICollectionViewCell {
         return labelCell
     }()
     
+    let subtitleLabel = {
+        let label = UILabel()
+        
+        label.text = "Шытырман окигалы мультсериал Елбасынын, Yлы"
+        label.font = UIFont (name: "SF-Pro-Display-Regular", size: 12)
+        label.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
+        
+        return label
+    }()
+    
+    let image = {
+        let imageView = UIImageView()
+        
+        imageView.image = UIImage (named: "bannerImage")
+        imageView.layer.cornerRadius = 12
+        imageView.clipsToBounds = true
+        
+        return imageView
+    }()
     
 }
