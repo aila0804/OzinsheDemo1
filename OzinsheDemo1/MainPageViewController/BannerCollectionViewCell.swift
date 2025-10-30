@@ -44,4 +44,71 @@ class BannerCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    let genreNameView = {
+        let labelView = UIView()
+        
+        labelView.backgroundColor = UIColor(red: 0.5, green: 0.18, blue: 0.99, alpha: 1)
+        labelView.layer.cornerRadius = 8
+        
+        return labelView
+    }()
+    
+    let genreNameLabel = {
+        let label = UILabel()
+        
+        label.text = "Телехикая"
+        label.font = UIFont (name: "SF-Pro-Display-Regular", size: 12)
+        label.textColor = UIColor(named: "111827" )
+        
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupUI()
+        backgroundColor = UIColor(named: "111827")
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setData (bannerMovie: BannerMovie) {
+        let transformer = SDImageResizingTransformer(size: CGSize(width: 300, height: 164), scaleMode: .aspectFit)
+        
+        image.sd_setImage(with: URL(string: bannerMovie.link), placeholderImage: nil, context: [.imageTransformer: transformer])
+        
+        if let categoryName = bannerMovie.movie.categories.first?.name {
+            genreNameLabel.text = categoryName
+        }
+        
+        titleLabel.text = bannerMovie.movie.name
+        subtitleLabel.text = bannerMovie.movie.description
+    }
+    
+    func setupUI() {
+        
+        // Add subviews
+        addSubviews (titleLabel, subtitleLabel, image, genreNameView)
+        genreNameView.addSubview(genreNameLabel)
+        
+        // Constraints
+        
+        image.snp.makeConstraints { make in
+            make.right.equalToSuperview()
+            make.left.equalToSuperview()
+            make.top.equalToSuperview()
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.top.equalTo(image.snp.bottom).offset(16)
+        }
+        
+        
+    }
+    
+    
 }
