@@ -107,8 +107,24 @@ class BannerCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(image.snp.bottom).offset(16)
         }
         
+        subtitleLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.top.equalTo(titleLabel.snp.bottom).offset (8)
+            make.bottom.equalToSuperview()
+        }
         
+        genreNameView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(8)
+            make.left.equalToSuperview().inset(8)
+            make.height.equalTo(24)
+        }
+        
+        genreNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(genreNameView.snp.top)
+            make.bottom.equalTo(genreNameView.snp.bottom)
+            make.right.equalToSuperview().inset (8)
+            make.left.equalToSuperview().inset(8)
+        }
     }
-    
-    
 }
