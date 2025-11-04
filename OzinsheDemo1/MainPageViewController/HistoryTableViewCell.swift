@@ -34,5 +34,25 @@ class HistoryTableViewCell: UITableViewCell {
         return collectionView
     }()
     
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Карауды жалгастырыныз"
+        label.font = UIFont(name: "SFProDisplay-Bold", size: 16)
+        label.textColor = UIColor(named: "111827 - FFFFFF")
+        return label
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        historyCollection.dataSource = self
+        historyCollection.delegate = self
+        
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
 }
