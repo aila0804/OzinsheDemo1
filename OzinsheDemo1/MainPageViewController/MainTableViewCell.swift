@@ -37,3 +37,30 @@ class TopAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return attributes
     }
 }
+
+class MainTableViewCell: UITableViewCell {
+    
+    var delegate : MovieProtocol?
+    
+    var mainMovie = MainMovies()
+    
+    let identifier = "MainCell"
+    
+    let mainCollection: UICollectionView = {
+        let layout = TopAlignedCollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 12
+        layout.minimumInteritemSpacing = 12
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: -36, right: 24)
+        layout.itemSize = CGSize(width: 112, height: 220)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: "MainCollectionCell")
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = UIColor(named: "111827")
+        
+        return collectionView
+    }()
+    
+    
+}
