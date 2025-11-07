@@ -62,5 +62,44 @@ class MainTableViewCell: UITableViewCell {
         return collectionView
     }()
     
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Телехикая"
+        label.font = UIFont(name: "SF-Pro-Display-Bold", size: 16)
+        label.textColor = UIColor(named: "111827")
+        
+        return label
+    }()
+    
+    let allLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Барлыгы"
+        label.font = UIFont(name: "SF-Pro-Display-Semibold", size: 14)
+        label.textColor = UIColor(red: 0.702, green: 0.463, blue: 0.969, alpha: 1)
+        
+        return label
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        mainCollection.dataSource = self
+        mainCollection.delegate = self
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setData (mainMovie: MainMovies) {
+        titleLabel.text = mainMovie.categoryName
+        
+        self.mainMovie = mainMovie
+        
+        mainCollection.reloadData()
+        
+        //дописать
+    }
     
 }
