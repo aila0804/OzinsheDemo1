@@ -87,6 +87,22 @@ class OnboardingCell: UICollectionViewCell {
             make.bottom.equalTo(image.snp.bottom).inset(2)
         }
         
+        fullInfoLabel.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(32)
+            make.top.equalTo(welcomeLabel.snp.bottom).offset(24)
+        }
+        
+        nextButton.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().inset(50)
+            make.height.equalTo(56)
+        }
+        
+        skipButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(24)
+            make.top.equalToSuperview().offset(60)
+            make.size.equalTo(CGSize(width: 69, height: 24))
+        }
         
     }
     
