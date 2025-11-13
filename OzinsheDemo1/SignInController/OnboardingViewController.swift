@@ -66,5 +66,45 @@ class OnboardingViewController: UIViewController {
         collectionView.dataSource = self
     }
     
+    @objc func nextButtonTouched () {
+        let signInViewController = SignInViewController()
+        navigationController?.show(signInViewController, sender: self)
+    }
     
+    func setupUI() {
+        
+        view.backgroundColor = UIColor(named: "111827")
+        
+        view.addSubview(collectionView)
+        view.addSubview(pageControl)
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.left.right.bottom.equalToSuperview()
+        }
+        
+        pageControl.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(654)
+            make.centerX.equalToSuperview()
+        }
+    }
+}
+
+extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return arraySlides.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OnboardingCell", for: indexPath) as! OnboardingCell
+        
+        cell.image.image = UIImage (named: arraySlides[indexPath.row][0])
+        
+        cell.welcomeLabel.text = arraySlides[indexPath.row][1]
+        
+        cell.fullInfoLabel.text = arraySlideslindexPath.row][2]
+        
+        cell.skipButton.layer.cornerRadius = 8
+        
+    }
 }
