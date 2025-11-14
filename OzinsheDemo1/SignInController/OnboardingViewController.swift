@@ -106,5 +106,33 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
         
         cell.skipButton.layer.cornerRadius = 8
         
+        if indexPath.row == 2 {
+            cell.skipButton.isHidden = true
+        }
+        
+        cell.skipButton.addTarget(self, action: #selector(nextButtonTouched), for: .touchUpInside)
+        
+        cell.nextButton. layer.cornerRadius = 12
+        
+        if indexPath.row != 2 {
+            cell.nextButton.isHidden = true
+        }
+        
+        cell.nextButton.addTarget(self, action: #selector (nextButtonTouched), for: .touchUpInside)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: VICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) - UIEdgeInsets {
+        return UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageIndex = round(scrollView.contentOffset.x / view.frame.width)
+        pageControl.currentPage = Int(pageIndex)
     }
 }
