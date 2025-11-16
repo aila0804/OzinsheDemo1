@@ -40,6 +40,34 @@ class SignUpViewController: UIViewController {
         
         return label
     }()
+    
+    let emailTextField = {
+        let tf = TextFieldWithPadding()
+        tf. placeholder = "Сіздін email"
+        tf. font = UIFont (name: "SF-Pro-Display-Regular", size: 16)
+        tf.textColor = UIColor (named: "111827")
+        tf. layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00). cgColor
+        tf. layer.cornerRadius = 12
+        tf. layer.borderWidth = 1
         
+        return tf
+    }()
+    
+    let emailImage = {
+        let iv = UIImageView()
+        iv.image = UIImage (named: "email")
+        
+        return iv
+    }()
+    
+    let passwordLabel = {
+        let label = UILabel()
+        label.text = "Купиясез"
+        label.font = UIFont (name: "SF-Pro-Display-Bold", size: 14)
+        label.textColor = UIColor(named: "111827")
+        
+        return label
+    }()
+    
         
 }
