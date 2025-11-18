@@ -164,5 +164,88 @@ class SignUpViewController: UIViewController {
         
         return label
     }()
+    
+    // View Controller Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupUI()
+        hideKeyboardWhenTappedAround()
+        localizedLanguage()
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        repeatPasswordTextField.delegate = self
+    }
+    
+    // Add functional
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    @objc func showPassTapped () {
+        passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
+    }
+    
+    @objc func repeatShowPassTapped() {
+        repeatPasswordTextField.isSecureTextEntry = !repeatPasswordTextField.isSecureTextEntry
+    }
+    
+    @objc func signInTapped() {
+        let signInViewController = SignInViewController()
+        navigationController?.show(SignInViewController, sender: self)
+        navigationItem.title = ""
+    }
+    
+    @objc func signUpTapped() {
+    let signUpEmail = emailTextField.text!
+    let signUpPassword = passwordTextField.text!
+    let confirmPassword = repeatPasswordTextField.text!
+        
+        if signUpPassword == confirmPassword {
+            
+            SVProgressHUD.show()
+            let parameters = ["email": signUpEmail, "password": signUpPassword]
+            AF.request(Urls.SIGN_UP_URL, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
+                
+                SVProgressHUD.dismiss()
+                var resultString = ""
+                if let data = response.data {
+                    resultString = String(data: data, encoding: .utf8)!
+                    print(resultString)
+                }
+                if response.response?.statusCode == 200 {
+                    let json = JSON(response.data!)
+                    print("JSON: \(json)")
+                    
+                    if let token = json["accessToken"].string {
+                        Storage.sharedInstance.accessToken = token
+                        UserDefaults.standard.set(token, forkey: "accessToken")
+                        self.startApp()
+                    } else {
+                        SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+                    }
+                } else {
+                    var ErrorString = "CONNECTION_ERROR".localized()
+                    if let sCode = response.response?.statusCode {
+                        ErrorString = ErrorString + "\(sCode)"
+                        ErrorString = ErrorString + "\(resultString)"
+                        SVProgressHUD.showError(withStatus: "\(ErrorString)")
+                    }
+                    print( "Registration is successful")
+                } else {
+                    showAlert (message: "Try again")
+                }
+            }
+            
+            
         
 }
