@@ -206,9 +206,9 @@ class SignUpViewController: UIViewController {
     }
     
     @objc func signUpTapped() {
-    let signUpEmail = emailTextField.text!
-    let signUpPassword = passwordTextField.text!
-    let confirmPassword = repeatPasswordTextField.text!
+        let signUpEmail = emailTextField.text!
+        let signUpPassword = passwordTextField.text!
+        let confirmPassword = repeatPasswordTextField.text!
         
         if signUpPassword == confirmPassword {
             
@@ -237,15 +237,27 @@ class SignUpViewController: UIViewController {
                     var ErrorString = "CONNECTION_ERROR".localized()
                     if let sCode = response.response?.statusCode {
                         ErrorString = ErrorString + "\(sCode)"
-                        ErrorString = ErrorString + "\(resultString)"
-                        SVProgressHUD.showError(withStatus: "\(ErrorString)")
                     }
-                    print( "Registration is successful")
-                } else {
-                    showAlert (message: "Try again")
+                    ErrorString = ErrorString + "\(resultString)"
+                    SVProgressHUD.showError(withStatus: "\(ErrorString)")
                 }
             }
-            
-            
-        
+            print( "Registration is successful")
+        } else {
+            showAlert (message: "Try again")
+        }
+    }
+    
+    func showAlert (message: String) {
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func startApp() {
+        let tabViewController = TabBarController ()
+        tabViewController.modalPresentationStyle = .fullScreen
+        self.present (tabViewController, animated: true, completion: nil)
+    }
+    
 }
