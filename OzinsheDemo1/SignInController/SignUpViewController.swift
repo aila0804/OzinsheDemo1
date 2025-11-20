@@ -260,4 +260,106 @@ class SignUpViewController: UIViewController {
         self.present (tabViewController, animated: true, completion: nil)
     }
     
+    // Add Subviews & Constraints
+    
+    func setupUI() {
+    view.backgroundColor = UIColor(named: "111827" )
+        
+    view. addSubviews (welcomeLabel, signUpLabel, emailLabel, emailTextField, emailImage, passwordLabel, passwordTextField, passwordImage, showPasswordButton, repeatPasswordLabel, repeatPasswordTextField, repeatPasswordImage, repeatShowPasswordButton, signUpButton, questionLabel)
+        
+        welcomeLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            make.left.equalToSuperview().inset(24)
+        }
+        
+        signUpLabel.snp.makeConstraints { make in
+            make.top.equalTo(welcomeLabel.snp.bottom).inset(0)
+            make.left.equalToSuperview().inset(24)
+        }
+        
+        emailLabel.snp.makeConstraints { make in
+            make.top.equalTo(signUpLabel.snp.bottom).offset(32)
+            make.left.equalToSuperview().inset(24)
+        }
+        
+        emailTextField.snp.makeConstraints { make in
+            make. top.equalTo(emailLabel.snp.bottom).offset(4)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(56)
+        }
+        
+        emailImage.snp.makeConstraints { make in
+            make.centerY.equalTo(emailTextField)
+            make.leading.equalTo(emailTextField.snp.leading).inset(16)
+        }
+        
+        passwordLabel.snp.makeConstraints { make in
+            make.top.equalTo(emailTextField.snp.bottom).offset(13)
+            make.left.equalToSuperview().inset(24)
+        }
+        
+        passwordTextField.snp.makeConstraints { make in
+            make.top.equalTo(passwordLabel.snp.bottom).offset(4)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(56)
+        }
+        
+        passwordImage.snp.makeConstraints { make in
+            make.centerY.equalTo(passwordTextField)
+            make.leading.equalTo(passwordTextField.snp.leading).inset(16)
+        }
+        
+        showPasswordButton.snp.makeConstraints { make in
+            make.centerY.equalTo(passwordTextField)
+            make.right.equalTo(passwordTextField).inset(0)
+            make.height.equalTo(56)
+            make.width.equalTo(36)
+        }
+        
+        repeatPasswordLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(13)
+            make.left.equalToSuperview().inset(24)
+        }
+        
+        repeatPasswordTextField.snp.makeConstraints { make in
+            make.top.equalTo(repeatPasswordLabel.snp.bottom).offset(4)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(56)
+        }
+        
+        repeatPasswordImage.snp.makeConstraints { make in
+            make.centerY.equalTo(repeatPasswordTextField)
+            make.leading.equalTo(repeatPasswordTextField.snp.leading).inset(16)
+        }
+        
+        repeatShowPasswordButton.snp.makeConstraints { make in
+            make.centerY.equalTo(repeatPasswordTextField)
+            make.right.equalTo(repeatPasswordTextField).inset(0)
+            make.height.equalTo(56)
+            make.width.equalTo(36)
+        }
+        
+        signUpButton.snp.makeConstraints { make in
+            make.top.equalTo(repeatPasswordTextField.snp.bottom).offset(40)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(56)
+        }
+        
+        signInButton.snp.makeConstraints { make in
+            make.top.equalTo(signUpButton.snp.bottom).offset(24)
+            make.right.equalToSuperview().inset(18)
+            make.height.equalTo(22)
+            make.width.equalTo (50)
+        }
+        
+        questionLabel.snp.makeConstraints { make in
+            make.right.equalTo(signInButton.snp.left)
+            make.left.equalToSuperview().inset(24)
+            make.top.equalTo(signUpButton.snp.bottom).offset(26)
+        }
+        
 }
