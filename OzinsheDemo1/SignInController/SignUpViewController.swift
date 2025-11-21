@@ -263,9 +263,9 @@ class SignUpViewController: UIViewController {
     // Add Subviews & Constraints
     
     func setupUI() {
-    view.backgroundColor = UIColor(named: "111827" )
+        view.backgroundColor = UIColor(named: "111827" )
         
-    view. addSubviews (welcomeLabel, signUpLabel, emailLabel, emailTextField, emailImage, passwordLabel, passwordTextField, passwordImage, showPasswordButton, repeatPasswordLabel, repeatPasswordTextField, repeatPasswordImage, repeatShowPasswordButton, signUpButton, questionLabel)
+        view. addSubviews (welcomeLabel, signUpLabel, emailLabel, emailTextField, emailImage, passwordLabel, passwordTextField, passwordImage, showPasswordButton, repeatPasswordLabel, repeatPasswordTextField, repeatPasswordImage, repeatShowPasswordButton, signUpButton, questionLabel)
         
         welcomeLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
@@ -361,5 +361,44 @@ class SignUpViewController: UIViewController {
             make.left.equalToSuperview().inset(24)
             make.top.equalTo(signUpButton.snp.bottom).offset(26)
         }
-        
+    }
+    
+    func localizedLanguage () {
+        welcomeLabel.text = "SIGN_UP_LABEL".localized()
+        signUpLabel.text = "DETAIL_INFORM_LABEL".localized()
+        emailTextField placeholder = "SIGN_UP_EMAIL".localized()
+        passwordLabel.text = "CHANGE_PASSWORD_LABEL".localized()
+        repeatPasswordLabel.text = "REPEAT_PASSWORD_LABEL".localized()
+        passwordTextField.placeholder = "USER_PASSWORD_CHANGE".localized()
+        repeatPasswordTextField.placeholder = "USER_PASSWORD_CHANGE".localized()
+        questionLabel.text = "SIGN_UP_QUESTION_LABEL".localized()
+        signUpButton.setTitle("SIGN_UP_BUTTON".localized(), for: .normal)
+        signInButton.setTitle("SIGN_IN_BUTTON_UP".localized(), for: .normal)
+    }
 }
+
+// UITextFieldDelegate extension
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == emailTextField {
+            emailTextField.layer.borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
+        } else if textField == passwordTextField {
+            passwordTextField.layer.borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
+        } else if textField == repeatPasswordTextField {
+            repeatPasswordTextField.layer.borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == emailTextField {
+            emailTextField.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
+        } else if textField == passwordTextField {
+            passwordTextField.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
+        } else if textField == repeatPasswordTextField {
+            repeatPasswordTextField.layer.borderColor = UIColor (red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
+        }
+    }
+}
+
+
