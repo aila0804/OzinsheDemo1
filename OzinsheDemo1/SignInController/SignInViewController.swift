@@ -196,35 +196,158 @@ class SignInViewController: UIViewController {
     }
     
     @objc func signInTapped() {
-    let email = emailTextField.text!
-    let password = passwordTextField.text!
+        let email = emailTextField.text!
+        let password = passwordTextField.text!
         
-    SVProgressHUD.show()
+        SVProgressHUD.show()
         
-    let parameters = ["email": email, "password": password]
+        let parameters = ["email": email, "password": password]
         
         AF.request(Urls.SIGN_IN_URL, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
             
-    SVProgressHUD.dismiss()
-    var resultString = ""
-    if let data = response.data {
-    resultString = String(data: data, encoding: .utf8)!
-    print(resultstrifg)
+            SVProgressHUD.dismiss()
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data: data, encoding: .utf8)!
+                print(resultString)
+            }
+            
+            if response.response?.statusCode == 200 {
+                let json = JSON(response.data!)
+                print("JSON: \(json)")
+            }
+                
+                if let token = json[ "accessToken"].string {
+                    Storage.sharedInstance.accessToken = token
+                    UserDefaults.standard.set(token, forkey: "accessToken")
+                    self.startApp()
+                } else {
+                    SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+                }
+            } else {
+                var ErrorString = "CONNECTION_ERROR".localized()
+                if let sCode = response.response?.statusCode {
+                    ErrorString = ErrorString + "\(sCode)"
+                }
+                ErrorString = ErrorString + "\(resultString)"
+                SVProgressHUD.showError(withStatus: "\(ErrorString)")
+            }
+        }
     }
-    if
-    response. response?. statusCode ==
-    200 {
-    let json = JSON (response.data!)
-    print ("JSON: ((json)")
-    if let token = json[ "accessToken"].string {
-    Storage.sharedInstance.accessToken = token
-    UserDefaults.standard.set (token, forkey: "accessToken")
-    self.startApp ()
-    ｝
-    else {
-    SVProgressHUD.showError(withStatus:
-    "CONNECTION_ERROR" localized ())
+    
+    func startApp() {
+        let tabBarViewController = TabBarController()
+        tabBarViewController.modalPresentationStyle = .fullScreen
+        self.present(tabBarViewController, animated: true, completion: nil)
     }
-    ｝
-    else
-    var ErrorStrina = "CONNECTION ERROR". localized()
+    
+    @objc func showPasswordTapped() {
+        passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
+    }
+    
+    // Add Subviews & Constraints
+    func setupUI() {
+        view.backgroundColor = UIColor(named: "111827")
+        
+        view.addSubviews(welcomeLabel, signInLabel, emailLabel, emailTextField, emailImage, passwordLabel, passwordTextField, passwordImage, showPasswordButton, signInButton, signUpButton, questionLabel)
+        
+        welcomeLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            make.left.equalToSuperview().inset(24)
+        }
+        
+        signInLabel.snp.makeConstraints { make in
+            make.top.equalTo(welcomeLabel.snp.bottom).inset(0)
+            make.left.equalToSuperview().inset(24)
+        }
+        
+        emailLabel.snp.makeConstraints { make in
+            make.top.equalTo(signInLabel.snp.bottom).offset(32)
+            make.left.equalToSuperview().inset(24)
+        }
+        
+        emailTextField.snp.makeConstraints { make in
+            make.top.equalTo(emailLabel.snp.bottom).offset(4)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(56)
+        }
+        
+        emailImage.snp.makeConstraints { make in
+            make.centerY.equalTo(emailTextField)
+            make.leading.equalTo(emailTextField.snp.leading).inset(16)
+        }
+        
+        passwordLabel.snp.makeConstraints { make in
+            make.top.equalTo(emailTextField.snp.bottom).offset(13)
+            make.left.equalToSuperview().inset(24)
+        }
+        
+        passwordTextField.snp.makeConstraints { make in
+            make.top.equalTo(passwordLabel.snp.bottom).offset(4)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(56)
+        }
+        
+        passwordImage.snp.makeConstraints { make in
+            make.centerY.equalTo(passwordTextField)
+            make.leading.equalTo(passwordTextField.snp.leading).inset(16)
+        }
+        
+        showPasswordButton.snp.makeConstraints { make in
+            make.centerY.equalTo(passwordTextField)
+            make.right.equalTo(passwordTextField).inset(0)
+            make.height.equalTo(56)
+            make.width.equalTo(36)
+        }
+        
+        signInButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(40)
+            make.left.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(56)
+        }
+        
+        signUpButton.snp.makeConstraints { make in
+            make.top.equalTo(signInButton.snp.bottom).offset(24)
+            make.right.equalToSuperview().inset(24)
+            make.height.equalTo(22)
+            make.width.equalTo(65)
+        }
+        
+        questionLabel.snp.makeConstraints { make in
+            make.right.equalTo(signUpButton.snp.left)
+            make.left.equalToSuperview().inset(24)
+            make.top.equalTo(signInButton.snp.bottom).offset(26)
+        }
+    }
+    
+    func localizedLanguage () {
+        emailTextField.placeholder = "SIGN_UP_EMAIL".localized()
+        passwordTextField.placeholder = "USER_PASSWORD_CHANGE".localized()
+        signInButton.setTitle("SIGN_IN_BUTTON_UP".localized(), for: .normal)
+        signUpButton.setTitle("SIGN_UP_BUTTON".localized(), for: .normal)
+        welcomeLabel.text = "HELLO_LABEL".localized()
+        signInLabel.text = "DETAIL_SIGN_IN".localized()
+        passwordLabel.text = "CHANGE_PASSWORD_LABEL".localized()
+        questionLabel.text = "SIGN_IN_QUESTION".localized()
+    }
+    
+    // UITextFieldDelegate extension
+extension SignInViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == emailTextField {
+            emailTextField. layer. borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
+        } else if textField == passwordTextField {
+            passwordTextField. layer.borderColor = UIColor (red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
+        }
+    }
+    func textFieldDidEndEditing (_ textField: UITextField) {
+        if textField == emailTextField {
+            emailTextField. layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
+        } else if textField == passwordTextField {
+            passwordTextField.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
+        }
+    }
+}
