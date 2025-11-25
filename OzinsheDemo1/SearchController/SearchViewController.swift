@@ -52,6 +52,7 @@ class SearchViewController: UIViewController {
         searchTF.layer.borderWidth = 1.0
         searchTF.layer.borderColor = UIColor (red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
         searchTF.layer.cornerRadius = 12.0
+        
         return searchTF
     }()
     
@@ -60,6 +61,7 @@ class SearchViewController: UIViewController {
         exitBut.setImage (UIImage (named: "exitButton"), for: .normal)
         exitBut.contentMode = .scaleToFill
         exitBut.addTarget(self, action: #selector(clearTextField), for: .touchUpInside)
+        
         return exitBut
     } ()
     
@@ -68,6 +70,7 @@ class SearchViewController: UIViewController {
         searchBut.setImage(UIImage (named: "searchVC"), for: .normal)
         searchBut.contentMode = .scaleToFill
         searchBut.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        
         return searchBut
     }()
     
@@ -76,6 +79,7 @@ class SearchViewController: UIViewController {
         label.text = "Санаттар"
         label.font = UIFont (name: "SF-Pro-Display-Bold", size: 24)
         label.textColor = UIColor(named: "111827")
+        
         return label
     }()
     
@@ -90,6 +94,7 @@ class SearchViewController: UIViewController {
         collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: "SearchCollectionViewCell")
         collectionView.backgroundColor = UIColor (named: "111827" )
         collectionView.contentInsetAdjustmentBehavior = .automatic
+        
         return collectionView
     }()
     
@@ -102,8 +107,10 @@ class SearchViewController: UIViewController {
         tv.backgroundColor = UIColor (named: "111827")
         //Регистрация table view cell
         tv.register(MovieTableViewCell.self, forCellReuseIdentifier: "MovieTableCell")
+        
         return tv
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -111,9 +118,12 @@ class SearchViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
         tableView.dataSource = self
         tableView.delegate = self
+        
         addViews()
+        
         exitButton.isHidden = true
         hideKeyboardWhenTappedAround()
         downloadCategories()
@@ -127,7 +137,7 @@ class SearchViewController: UIViewController {
     }
     
     @objc func dismissKeyboard() {
-        view.endEditing (true)
+        view.endEditing(true)
     }
     
     @objc func clearTextField() {
@@ -255,8 +265,7 @@ class SearchViewController: UIViewController {
     }
     SVProgressHUD.show()
     
-    let
-    headers: HTTPHeaders = [ "Authorization": "Bearer\(Storage.sharedInstance.accessToken)"]
+    let headers: HTTPHeaders = [ "Authorization": "Bearer\(Storage.sharedInstance.accessToken)"]
     let parametres = ["search": searchTextField.text!]
     AF.request(Urls.SEARCH_MOVIES_URL, method: .get, parameters: parametres, headers: headers).responseData { response in
         
@@ -322,6 +331,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     // Collection view data source
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categories.count
     }
@@ -331,6 +341,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         
         cell.label.text = categories[indexPath.row].name
         cell.backView.layer.cornerRadius = 8
+        
         return cell
     }
     
@@ -361,7 +372,7 @@ extension SearchViewController: UITextFieldDelegate {
         }
         
         func textFieldDidChanged(_textField: UITextField) {
-            downloadSearchMovies ()
+            downloadSearchMovies()
         }
     }
     //    override func viewDidLoad() {

@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   OzinsheDemo1
 
@@ -31,4 +31,4 @@
 "TOTAL_VIDEO_LABEL" = "Показать все";
 "CHODSE_GENRE_LABEL" = "Выбрать жанр";
 "SHARE_LABEL" = "Поделиться" ;
-"ADD_TO_FAVORITE" = "Добавить";
+"ADD_TO_FAVORITE" = "Добавить"

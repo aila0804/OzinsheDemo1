@@ -358,7 +358,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return 288.0
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath）{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if mainMovies[indexPath.row].cellType != .mainMovie {
             return
         }
@@ -376,8 +376,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func movieDidSelect(movie: Movie) {
         let movieInfoVC = MovieInfoController()
         movieInfoVC.movie = movie
-        navigationController?.show(movieInfoVC, sender:
-                                    self)
+        navigationController?.show(movieInfoVC, sender: self)
     }
 
 }

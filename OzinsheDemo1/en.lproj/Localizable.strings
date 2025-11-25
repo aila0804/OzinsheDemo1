@@ -38,4 +38,13 @@
 "SERIES_LABEL" = "Series";
 "SCREENSHOT LABEL" = "Screenshots";
 "SIMILAR_MOVIES_ LABEL" = "Similar movies";
-
+"SEARCH_NAVIGATION" = "Search";
+"CATEGORIES_SEARCH" = "Categories";
+"SEARCH_PLACEHOLDER" = "Search";
+"FAVORITE_NAVIGATION" = "List";
+"SIGN_UP_LABEL" = "Sign up";
+"DETAIL_INFORM_LABEL" = "Add data";
+"SIGN_UP_EMAIL" = "Your Email";
+"CHANGE_PASSWORD _LABEL" = "Password" ;
+"REPEAT_PASSWORD_LABEL" = "Repeat ypur password";
+"SIGN_UP_QUESTION_LABEL" = "Do you have account?"
