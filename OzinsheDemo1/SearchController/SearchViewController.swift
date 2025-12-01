@@ -36,8 +36,7 @@ class SearchViewController: UIViewController {
     
     var isLoading: Bool = false
     
-    var
-    categories: [Category] = []
+    var categories: [Category] = []
     
     var movies: [Movie] = []
     
@@ -57,7 +56,7 @@ class SearchViewController: UIViewController {
     }()
     
     lazy var exitButton = {
-        let exitBut = UIButton ()
+        let exitBut = UIButton()
         exitBut.setImage (UIImage (named: "exitButton"), for: .normal)
         exitBut.contentMode = .scaleToFill
         exitBut.addTarget(self, action: #selector(clearTextField), for: .touchUpInside)
@@ -152,7 +151,7 @@ class SearchViewController: UIViewController {
     func downloadCategories() {
         SVProgressHUD.show()
         let headers: HTTPHeaders = ["Authorization": "Bearer\(Storage.sharedInstance.accessToken)"]
-        AF.request(Urls.CATEGORIES_URL, method: .get, headers:
+        Alamofire.AF.request(Urls.CATEGORIES_URL, method: .get, headers:
                     headers).responseData { response in
             SVProgressHUD.dismiss()
             var resultString = ""

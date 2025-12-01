@@ -6,7 +6,7 @@
   
 */
 
-"MY PROFILE" = "Менін профилім";
+"MY_PROFILE" = "Менін профилім";
 "LANGUAGE" = "Tin";
 "USER_INFO_NAME_LABEL" = "Сіздін атыныз";
 "USER_INFO_NAME_TEXT_FIELD" = "Атынызды ентізініз";
@@ -31,5 +31,5 @@
 "ADD_TO_FAVORITE" = "Тізімге косу";
 "FULL_DESCRIPTION_BUTTON" = "Толыгырак";
 "DIRECTOR_LABEL" = "Режиссер";
-"PRODUCER_LABEL" = "Продюсер"
+"PRODUCER_LABEL" = "Продюсер";
 

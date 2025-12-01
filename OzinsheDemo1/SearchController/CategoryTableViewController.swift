@@ -44,7 +44,7 @@ class CategoryTableViewController: UITableViewController {
         }
     }
     
-    func downloadMoviesByCategory) {
+    func downloadMoviesByCategory() {
         SVProgressHUD.show()
         
         let headers: HTTPHeaders = ["Authorization": "Bearer\(Storage.sharedInstance.accessToken)"]
@@ -57,13 +57,13 @@ class CategoryTableViewController: UITableViewController {
         AF.request(Urls.MOVIES_BY_CATEGORY_URL, method: .get, parameters: parametres, headers: headers).responseData { response in
             
             SVProgressHUD.dismiss()
-            var if resultString = ""
-                    let data = response.data {
+            var resultString = ""
+            if let data = response.data {
                 resultString = String(data: data, encoding: .utf8)!
                 print(resultString)
             }
             
-            if response.response?.statusCode ＝= 200 {
+            if response.response?.statusCode == 200 {
                 let json = JSON(response.data!)
                 print("JSON: \(json)")
                 
@@ -71,7 +71,7 @@ class CategoryTableViewController: UITableViewController {
                     if let array = json["content"].array {
                         for item in array {
                             let movie = Movie(json: item)
-                            self movies.append(movie)
+                            self.movies.append(movie)
                         }
                         self.tableView.reloadData()
                     } else {
@@ -80,7 +80,7 @@ class CategoryTableViewController: UITableViewController {
                 } else {
                     var ErrorString = "CONNECTION_ERROR".localized()
                     if let sCode = response.response?.statusCode {
-                        ErrorString = ErrorString + "\ (sCode)"
+                        ErrorString = ErrorString + "\(sCode)"
                     }
                     ErrorString = ErrorString + "\(resultString)"
                     SVProgressHUD.showError(withStatus: "\(ErrorString)")

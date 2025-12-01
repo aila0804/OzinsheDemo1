@@ -191,7 +191,7 @@ class ChangePasswordViewController: UIViewController {
                 
                 passwordImage.snp.makeConstraints { make in
                     make.size.equalTo(CGSize(width: 20, height: 20))
-                    make.left.equalTo(passwordTextField.sp.left).offset(16)
+                    make.left.equalTo(passwordTextField.snp.left).offset(16)
                     make.centerY.equalTo(passwordTextField)
                 }
                 

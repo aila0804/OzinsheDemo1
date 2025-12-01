@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 
 class SignInViewController: UIViewController {
+    
     let welcomeLabel = {
         let label = UILabel()
         label.text = "Салем"
@@ -46,7 +47,7 @@ class SignInViewController: UIViewController {
         tf.textColor = UIColor (named: "111827 - FFFFFF")
         tf.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
         tf.layer.cornerRadius = 12
-        tf. layer.borderWidth = 1
+        tf.layer.borderWidth = 1
         
         return tf
     }()
@@ -89,7 +90,7 @@ class SignInViewController: UIViewController {
     lazy var showPasswordButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "showPassword"), for: .normal)
-        button.addTarget(self, action: #selector(showPassTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(showPasswordTapped), for: .touchUpInside)
         
         return button
     }()
@@ -97,7 +98,7 @@ class SignInViewController: UIViewController {
     let repeatPasswordLabel = {
         let label = UILabel()
         label.text = "Купиясоз"
-        label. font = UIFont (name: "SF-Pro-Display-Bold", size: 14)
+        label.font = UIFont(name: "SF-Pro-Display-Bold", size: 14)
         label.textColor = UIColor(named: "111827")
         
         return label
@@ -125,8 +126,8 @@ class SignInViewController: UIViewController {
     
     lazy var repeatShowPasswordButton = {
         let button = UIButton()
-        button. setImage (UIImage (named: "showPassword"), for: .normal)
-        button.addTarget(self, action: #selector (repeatShowPassTapped), for: .touchUpInside)
+        button.setImage(UIImage(named: "showPassword"), for: .normal)
+        button.addTarget(self, action: #selector(repeatShowPasswordTapped), for: .touchUpInside)
         
         return button
     }()
@@ -136,7 +137,7 @@ class SignInViewController: UIViewController {
         button.setTitle("Тіркелу", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont (name: "SF-Pro-Display-Semibold", size: 16)
-        button. backgroundColor = UIColor(red: 0.49, green: 0.18, blue: 0.99, alpha: 1.00)
+        button.backgroundColor = UIColor(red: 0.49, green: 0.18, blue: 0.99, alpha: 1.00)
         button.layer.cornerRadius = 12
         button.addTarget (self, action: #selector(signUpTapped), for: .touchUpInside)
         
@@ -146,9 +147,9 @@ class SignInViewController: UIViewController {
     lazy var signInButton = {
         let button = UIButton()
         button.setTitle("Kipy", for: .normal)
-        button.titleLabel?. font = UIFont (name: "SF-Pro-Display-Semibold", size: 14)
+        button.titleLabel?.font = UIFont(name: "SF-Pro-Display-Semibold", size: 14)
         button.setTitleColor(UIColor(red: 0.49, green: 0.18, blue: 0.99, alpha: 1.00), for: .normal)
-        button. addTarget(self, action: #selector(signInTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(signInTapped), for: .touchUpInside)
         
         return button
     }()
@@ -216,22 +217,21 @@ class SignInViewController: UIViewController {
                 let json = JSON(response.data!)
                 print("JSON: \(json)")
             }
-                
-                if let token = json[ "accessToken"].string {
-                    Storage.sharedInstance.accessToken = token
-                    UserDefaults.standard.set(token, forkey: "accessToken")
-                    self.startApp()
-                } else {
-                    SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
-                }
+            
+            if let token = json["accessToken"].string {
+                Storage.sharedInstance.accessToken = token
+                UserDefaults.standard.set(token, forkey: "accessToken")
+                self.startApp()
             } else {
-                var ErrorString = "CONNECTION_ERROR".localized()
-                if let sCode = response.response?.statusCode {
-                    ErrorString = ErrorString + "\(sCode)"
-                }
-                ErrorString = ErrorString + "\(resultString)"
-                SVProgressHUD.showError(withStatus: "\(ErrorString)")
+                SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
             }
+        } else {
+            var ErrorString = "CONNECTION_ERROR".localized()
+            if let sCode = response.response?.statusCode {
+                ErrorString = ErrorString + "\(sCode)"
+            }
+            ErrorString = ErrorString + "\(resultString)"
+            SVProgressHUD.showError(withStatus: "\(ErrorString)")
         }
     }
     
@@ -243,6 +243,10 @@ class SignInViewController: UIViewController {
     
     @objc func showPasswordTapped() {
         passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
+    }
+    
+    @objc func repeatShowPasswordTapped() {
+        repeatPasswordTextField.isSecureTextEntry = !repeatPasswordTextField.isSecureTextEntry
     }
     
     // Add Subviews & Constraints
@@ -333,21 +337,22 @@ class SignInViewController: UIViewController {
         passwordLabel.text = "CHANGE_PASSWORD_LABEL".localized()
         questionLabel.text = "SIGN_IN_QUESTION".localized()
     }
-    
-    // UITextFieldDelegate extension
-extension SignInViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == emailTextField {
-            emailTextField. layer. borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
-        } else if textField == passwordTextField {
-            passwordTextField. layer.borderColor = UIColor (red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
-        }
-    }
-    func textFieldDidEndEditing (_ textField: UITextField) {
-        if textField == emailTextField {
-            emailTextField. layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
-        } else if textField == passwordTextField {
-            passwordTextField.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
-        }
-    }
 }
+
+    // UITextFieldDelegate extension
+    extension SignInViewController: UITextFieldDelegate {
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            if textField == emailTextField {
+                emailTextField.layer.borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
+            } else if textField == passwordTextField {
+                passwordTextField.layer.borderColor = UIColor (red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
+            }
+        }
+        func textFieldDidEndEditing (_ textField: UITextField) {
+            if textField == emailTextField {
+                emailTextField.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
+            } else if textField == passwordTextField {
+                passwordTextField.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
+            }
+        }
+    }

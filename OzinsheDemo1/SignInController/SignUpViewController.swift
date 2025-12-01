@@ -35,7 +35,7 @@ class SignUpViewController: UIViewController {
     let emailLabel = {
         let label = UILabel()
         label.text = "Email"
-        label. font = UIFont (name: "SF-Pro-Display-Bold", size: 14)
+        label.font = UIFont (name: "SF-Pro-Display-Bold", size: 14)
         label.textColor = UIColor(named: "111827")
         
         return label
@@ -43,12 +43,12 @@ class SignUpViewController: UIViewController {
     
     let emailTextField = {
         let tf = TextFieldWithPadding()
-        tf. placeholder = "Сіздін email"
-        tf. font = UIFont (name: "SF-Pro-Display-Regular", size: 16)
+        tf.placeholder = "Сіздін email"
+        tf.font = UIFont (name: "SF-Pro-Display-Regular", size: 16)
         tf.textColor = UIColor (named: "111827")
-        tf. layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00). cgColor
-        tf. layer.cornerRadius = 12
-        tf. layer.borderWidth = 1
+        tf.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
+        tf.layer.cornerRadius = 12
+        tf.layer.borderWidth = 1
         
         return tf
     }()
@@ -99,7 +99,7 @@ class SignUpViewController: UIViewController {
     let repeatPasswordLabel = {
         let label = UILabel()
         label.text = "Купиясоз"
-        label. font = UIFont (name: "SF-Pro-Display-Bold", size: 14)
+        label.font = UIFont (name: "SF-Pro-Display-Bold", size: 14)
         label.textColor = UIColor(named: "111827")
         
         return label
@@ -127,8 +127,8 @@ class SignUpViewController: UIViewController {
     
     lazy var repeatShowPasswordButton = {
         let button = UIButton()
-        button. setImage (UIImage (named: "showPassword"), for: .normal)
-        button.addTarget(self, action: #selector (repeatShowPassTapped), for: .touchUpInside)
+        button.setImage(UIImage (named: "showPassword"), for: .normal)
+        button.addTarget(self, action: #selector(repeatShowPasswordTapped), for: .touchUpInside)
         
         return button
     }()
@@ -138,7 +138,7 @@ class SignUpViewController: UIViewController {
         button.setTitle("Тіркелу", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont (name: "SF-Pro-Display-Semibold", size: 16)
-        button. backgroundColor = UIColor(red: 0.49, green: 0.18, blue: 0.99, alpha: 1.00)
+        button.backgroundColor = UIColor(red: 0.49, green: 0.18, blue: 0.99, alpha: 1.00)
         button.layer.cornerRadius = 12
         button.addTarget (self, action: #selector(signUpTapped), for: .touchUpInside)
         
@@ -148,9 +148,9 @@ class SignUpViewController: UIViewController {
     lazy var signInButton = {
         let button = UIButton()
         button.setTitle("Kipy", for: .normal)
-        button.titleLabel?. font = UIFont (name: "SF-Pro-Display-Semibold", size: 14)
+        button.titleLabel?.font = UIFont (name: "SF-Pro-Display-Semibold", size: 14)
         button.setTitleColor(UIColor(red: 0.49, green: 0.18, blue: 0.99, alpha: 1.00), for: .normal)
-        button. addTarget(self, action: #selector(signInTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(signInTapped), for: .touchUpInside)
         
         return button
     }()
@@ -195,7 +195,7 @@ class SignUpViewController: UIViewController {
         passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
     }
     
-    @objc func repeatShowPassTapped() {
+    @objc func repeatShowPasswordTapped() {
         repeatPasswordTextField.isSecureTextEntry = !repeatPasswordTextField.isSecureTextEntry
     }
     
@@ -228,7 +228,7 @@ class SignUpViewController: UIViewController {
                     
                     if let token = json["accessToken"].string {
                         Storage.sharedInstance.accessToken = token
-                        UserDefaults.standard.set(token, forkey: "accessToken")
+                        UserDefaults.standard.set(token, forKey: "accessToken")
                         self.startApp()
                     } else {
                         SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
@@ -265,7 +265,7 @@ class SignUpViewController: UIViewController {
     func setupUI() {
         view.backgroundColor = UIColor(named: "111827" )
         
-        view. addSubviews (welcomeLabel, signUpLabel, emailLabel, emailTextField, emailImage, passwordLabel, passwordTextField, passwordImage, showPasswordButton, repeatPasswordLabel, repeatPasswordTextField, repeatPasswordImage, repeatShowPasswordButton, signUpButton, questionLabel)
+        view.addSubviews(welcomeLabel, signUpLabel, emailLabel, emailTextField, emailImage, passwordLabel, passwordTextField, passwordImage, showPasswordButton, repeatPasswordLabel, repeatPasswordTextField, repeatPasswordImage, repeatShowPasswordButton, signUpButton, questionLabel)
         
         welcomeLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
@@ -283,7 +283,7 @@ class SignUpViewController: UIViewController {
         }
         
         emailTextField.snp.makeConstraints { make in
-            make. top.equalTo(emailLabel.snp.bottom).offset(4)
+            make.top.equalTo(emailLabel.snp.bottom).offset(4)
             make.left.equalToSuperview().inset(24)
             make.right.equalToSuperview().inset(24)
             make.height.equalTo(56)
@@ -366,7 +366,7 @@ class SignUpViewController: UIViewController {
     func localizedLanguage () {
         welcomeLabel.text = "SIGN_UP_LABEL".localized()
         signUpLabel.text = "DETAIL_INFORM_LABEL".localized()
-        emailTextField placeholder = "SIGN_UP_EMAIL".localized()
+        emailTextField.placeholder = "SIGN_UP_EMAIL".localized()
         passwordLabel.text = "CHANGE_PASSWORD_LABEL".localized()
         repeatPasswordLabel.text = "REPEAT_PASSWORD_LABEL".localized()
         passwordTextField.placeholder = "USER_PASSWORD_CHANGE".localized()

@@ -43,7 +43,7 @@ class OnboardingCell: UICollectionViewCell {
         let button = UIButton()
         button.backgroundColor = UIColor(red: 0.5, green: 0.18, blue: 0.99, alpha: 1)
         button.setTitle("Эрі карай", for: .normal)
-        button.setTitleColor(white, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont (name: "SF-Pro-Display-Semibold", size: 16)
         button.layer.cornerRadius = 12
         
@@ -84,7 +84,7 @@ class OnboardingCell: UICollectionViewCell {
         
         welcomeLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(image.snp.bottom).inset(2)
+            make.bottom.equalTo(imageO.snp.bottom).inset(2)
         }
         
         fullInfoLabel.snp.makeConstraints { make in

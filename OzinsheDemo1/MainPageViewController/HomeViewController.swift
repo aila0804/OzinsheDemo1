@@ -86,7 +86,7 @@ class HomeViewController: UIViewController, MovieProtocol {
                 print (resultString)
             }
             
-            if response.response.statusCode == 200 {
+            if response.response?.statusCode == 200 {
                 let json = JSON(response.data!)
                 print ("JSON: \(json)")
                 
@@ -300,7 +300,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    func tableView(_ tableView: UITableView, number0fRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mainMovies.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -334,7 +334,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         
-        let cell = tableView.deueueReusableCell(withIdentifier: "MainCell", for: indexPath) as! MainTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath) as! MainTableViewCell
         
         cell.setData(mainMovie: mainMovies[indexPath.row])
         cell.delegate = self

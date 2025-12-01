@@ -18,7 +18,7 @@ class OnboardingViewController: UIViewController {
         }
     }
     
-    let collectionView: UICollectionViefv = {
+    let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
@@ -38,7 +38,7 @@ class OnboardingViewController: UIViewController {
     let pageControl = {
         let pc = UIPageControl()
         pc.numberOfPages = 3
-        pc.tintColor = black
+        pc.tintColor = .black
         pc.currentPage = 0
         pc.currentPageIndicatorTintColor = UIColor(red: 0.7, green: 0.46, blue: 0.97, alpha: 1)
         pc.contentVerticalAlignment = .center
@@ -91,18 +91,18 @@ class OnboardingViewController: UIViewController {
 
 extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arraySlides.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OnboardingCell", for: indexPath) as! OnboardingCell
         
-        cell.image.image = UIImage (named: arraySlides[indexPath.row][0])
+        cell.imageO.image = UIImage(named: arraySlides[indexPath.row][0])
         
         cell.welcomeLabel.text = arraySlides[indexPath.row][1]
         
-        cell.fullInfoLabel.text = arraySlideslindexPath.row][2]
+        cell.fullInfoLabel.text = arraySlides[indexPath.row][2]
         
         cell.skipButton.layer.cornerRadius = 8
         
@@ -112,22 +112,21 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
         
         cell.skipButton.addTarget(self, action: #selector(nextButtonTouched), for: .touchUpInside)
         
-        cell.nextButton. layer.cornerRadius = 12
-        
+        cell.nextButton.layer.cornerRadius = 12
         if indexPath.row != 2 {
             cell.nextButton.isHidden = true
         }
         
-        cell.nextButton.addTarget(self, action: #selector (nextButtonTouched), for: .touchUpInside)
+        cell.nextButton.addTarget(self, action: #selector(nextButtonTouched), for: .touchUpInside)
         
         return cell
     }
     
-    func collectionView(_ collectionView: VICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) - UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
     }
     

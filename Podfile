@@ -12,6 +12,10 @@ target 'OzinsheDemo1' do
   pod 'SDWebImage'
   
   pod 'SnapKit'
+  
+  pod 'Localize-Swift', '~> 3.2'
+  
+  pod 'UIGradient'
 
   target 'OzinsheDemo1Tests' do
     inherit! :search_paths

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, LanguageProtocol {
     
     lazy var profileImageView = {
         let profImageView = UIImageView()
@@ -256,7 +256,7 @@ class ProfileViewController: UIViewController {
         
         view.addSubviews(profileLabel, profileLabel, subtitleProfileLabel, backView)
         
-        backView.addSubviews(languageLabel, languageButton, languageArrowImage, languageCellView, userInfoLabel, UserInfoButton, userInfoArrowImage, userInfoCellView, passwordEditButton, passwordArrowImage, passwordCellView, darkModeLabel, darkModeSwitch)
+        backView.addSubviews(languageLabel, languageButton, languageArrowImage, languageCellView, userInfoLabel, userInfoButton, userInfoArrowImage, userInfoCellView, passwordEditButton, passwordArrowImage, passwordCellView, darkModeLabel, darkModeSwitch)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logOutButton"), style: .done, target: self, action: #selector(logOutTapButton))
         navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 1, green: 0.25, blue: 0.17, alpha: 1)

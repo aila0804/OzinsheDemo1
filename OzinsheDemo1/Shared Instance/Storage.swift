@@ -10,6 +10,6 @@ import UIKit
 class Storage {
     public var accessToken: String = ""
     
-    static let Sharedinstance = Storage()
+    static let sharedInstance = Storage()
 }
 

@@ -45,7 +45,7 @@ class LogOutViewController: UIViewController, UIGestureRecognizerDelegate {
         label.font = UIFont (name: "SFProDisplay-Regular", size: 16)
         label.textColor = UIColor(red: 0.612, green: 0.639, blue: 0.686, alpha: 1)
         
-        return questionLabel
+        return label
     }()
     
     lazy var agreeButton = {
@@ -111,7 +111,7 @@ class LogOutViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         
         disagreeButton.snp.makeConstraints { make in
-            make.top.equalTo(agreeButton.sp.bottom).offset(8)
+            make.top.equalTo(agreeButton.snp.bottom).offset(8)
             make.left.right.equalToSuperview().inset(24)
             make.height.equalTo(56)
         }
@@ -120,7 +120,7 @@ class LogOutViewController: UIViewController, UIGestureRecognizerDelegate {
     func localizeLanguage () {
         logOutLabel.text = "LOG_OUT_LABEL".localized()
         questionLabel.text = "LOG_OUT_QUES_LABEL".localized()
-        agreeButton. setTitle("LOG_OUT_BUTTON".localized(), for: .normal)
+        agreeButton.setTitle("LOG_OUT_BUTTON".localized(), for: .normal)
         disagreeButton.setTitle("NO_LOG_OUT_BUTTON".localized(), for: .normal)
     }
     
@@ -158,15 +158,14 @@ class LogOutViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @objc func logoutButtonTapped() {
-//        UserDefaults.standard.removeObject(forKey: "accessToken")
+        //        UserDefaults.standard.removeObject(forKey: "accessToken")
         DispatchQueue.main.async {
             let rootVC = UINavigationController(rootViewController: SignInViewController())
             
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = rootVC
-            appDelegate.window?.makeKeyAndVisible ()
+            appDelegate.window?.makeKeyAndVisible()
         }
-        
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
